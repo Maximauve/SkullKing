@@ -1,0 +1,15 @@
+@import "./_base/_colors";
+@import 'pages/homepage';
+
+
+body, html, #root, .App {
+  height:100%;
+  width:100%;
+  margin:0;
+  position:absolute;
+  background: $brownGradient;
+}
+
+body {
+  background: $brownGradient;
+}

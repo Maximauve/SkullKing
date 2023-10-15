@@ -1,5 +1,5 @@
 import React from 'react';
-import HomePage from './Composant/templates/HomePage';
+import HomePage from './pages/HomePage';
 
 const App: React.FC = () => {
   return (
