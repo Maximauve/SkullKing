@@ -1,0 +1,69 @@
+/* src/components/templates/HomePage.css */
+.home-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+  }
+  
+  .video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+  
+  .video-background video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .content {
+    text-align: center;
+    color: white;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  header h1 {
+    font-size: 36px;
+  }
+  
+  main p {
+    font-size: 24px;
+  }
+  
+  button.play-button {
+    background-color: #00aaff;
+    color: white;
+    padding: 10px 20px;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    margin-top: 20px;
+  }
+  
+  button.profile-button {
+    background-color: #00aaff;
+    color: white;
+    padding: 10px 20px;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    margin-right: 20px;
+    position: absolute;
+    top: 30px;
+    right: 10px;
+  }
+  
+  footer p {
+    font-size: 18px;
+  }
+  
