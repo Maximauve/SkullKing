@@ -1,1 +1,15 @@
 @use "../_base/_colors" as colors;
+@import "../components/HomeComponents/PlayButton.scss";
+
+
+.homepage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  .homepage-logo {
+    img {
+      width: 300px;
+    }
+  }
+}
