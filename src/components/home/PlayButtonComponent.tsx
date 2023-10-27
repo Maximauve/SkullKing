@@ -1,7 +1,6 @@
-import React from "react";
+import React from 'react';
 
 const PlayButtonComponent: React.FC = () => {
-
   return (
     <div>
       <div className="play-button">
