@@ -1,6 +1,5 @@
 import React from 'react';
-import HomePage from './Composant/templates/HomePage';
-import Chat from './Composant/templates/Chat';
+import Chat from 'pages/Chat';
 
 const App: React.FC = () => {
   return (
@@ -8,6 +7,6 @@ const App: React.FC = () => {
       <Chat />
     </div>
   );
-}
+};
 
 export default App;

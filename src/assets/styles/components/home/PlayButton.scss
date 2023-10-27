@@ -1,4 +1,4 @@
-@import "../../_base/_colors";
+@import 'src/assets/styles/_base/_colors';
 @import url('https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&display=swap');
 
 .play-button {
@@ -32,8 +32,8 @@
         background: linear-gradient(110deg, #E2A916 -39.18%, #ECDB8B 122.09%);
         background-clip: text;
         -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent; 
-        
+        -webkit-text-fill-color: transparent;
+
       }
     }
   }
