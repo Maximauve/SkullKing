@@ -1,5 +1,5 @@
-@use "../_base/_colors" as colors;
-@import "../components/HomeComponents/PlayButton.scss";
+@use "src/assets/styles/_base/_colors" as colors;
+@import "src/assets/styles/components/home/PlayButton.scss";
 
 
 .homepage {
