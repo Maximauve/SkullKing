@@ -1,10 +1,11 @@
 import React from 'react';
-import Chat from 'components/global/Chat';
+import { RouterProvider } from 'react-router-dom';
+import router from 'config/router';
 
 const App: React.FC = () => {
   return (
     <div className="App">
-      <Chat />
+      <RouterProvider router={router} />
     </div>
   );
 };
