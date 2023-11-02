@@ -1,0 +1,45 @@
+.login-register-modal{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 550px;
+  z-index: 1;
+
+  .flip-modal {
+    width: 400px;
+    height: 550px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+    
+    .flipper {
+      width: 400px;
+      height: 550px;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.5s;
+      &.flipped {
+        transform: rotateY(180deg);
+      }
+      .modal {
+        margin: 0;
+        display: block;
+        position: absolute;
+        width: 400px;
+        height: 550px;
+        backface-visibility: hidden; 
+        background-color: #FBF5EF;
+        border-radius: 10px;
+        text-align: center;
+      }
+      .register-modal {
+        transform: rotateY(180deg);
+      }
+    }
+  }
+  &.hidden {
+    display: none;
+  }
+}
