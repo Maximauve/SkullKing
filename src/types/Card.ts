@@ -1,7 +1,7 @@
-import { CardType } from "./CardType";
+import { type CardType } from './CardType';
 
 export interface Card {
-  id: number,
-  type: CardType,
-  value?: number,
+  id: number
+  type: CardType
+  value?: number
 }

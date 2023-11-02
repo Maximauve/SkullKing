@@ -1,6 +1,5 @@
 import React from 'react';
-import PlayButtonComponent from '../components/HomeComponents/PlayButtonComponent';
-
+import PlayButtonComponent from 'components/home/PlayButtonComponent';
 
 const HomePage: React.FC = () => {
   return (
