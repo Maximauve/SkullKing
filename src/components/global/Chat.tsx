@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import io, { type Socket } from 'socket.io-client';
-import { MessageInput } from 'components/messages/MessageInput';
-import { Messages } from 'components/messages/Messages';
+// import { MessageInput } from 'components/messages/MessageInput';
+// import { Messages } from 'components/messages/Messages';
 
 const Chat: React.FC = () => {
   const [socket, setSocket] = useState<Socket>();
   const [messages, setMessages] = useState<string[]>([]);
 
-  const send = (value: string): void => {
-    socket?.emit('message', value);
-  };
+  // const send = (value: string): void => {
+  //   socket?.emit('message', value as any);
+  // };
 
   useEffect(() => {
     const socket = io('http://localhost:8001');
@@ -29,8 +29,8 @@ const Chat: React.FC = () => {
 
   return (
     <>
-      <MessageInput send={send} />
-      <Messages messages={messages}/>
+      {/* <MessageInput send={send} /> */}
+      {/* <Messages messages={messages}/> */}
     </>
   );
 };

@@ -1,10 +1,10 @@
-import { Dispatch, PropsWithChildren, createContext, useReducer } from "react";
-import { CardActionType, CardReducer, CardState, initialCardState } from "./cardReducer";
-import { Action } from "../types/Action";
+import React, { type Dispatch, type PropsWithChildren, createContext, useReducer } from 'react';
+import { type CardActionType, CardReducer, type CardState, initialCardState } from './cardReducer';
+import { type Action } from 'types/Action';
 
 export const CardContext = createContext<[CardState, Dispatch<Action<CardActionType>>]>([
   initialCardState,
-  () => null,
+  () => null
 ]);
 
 const CardProvider: React.FC<PropsWithChildren> = ({ children }) => {

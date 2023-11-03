@@ -1,13 +1,67 @@
-import React from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import io from 'socket.io-client';
+import { MessageInput } from 'components/messages/MessageInput';
+import { Messages } from 'components/messages/Messages';
+import { type Message, type MessageReceived } from 'types/inputs/Message';
+import { UserContext } from 'contexts/UserProvider';
+import { useNavigate, useParams } from 'react-router-dom';
+import { type UserRoom } from 'types/user/UserRoom';
 
 const Room: React.FC = () => {
+  const [{ user }] = useContext(UserContext);
+  const navigate = useNavigate();
+  if (user === undefined) {
+    navigate('/login');
+    return null;
+  }
+
+  const { id } = useParams<{ id: string }>();
+  const [messages, setMessages] = useState<MessageReceived[]>([]);
+  const socket = io('http://localhost:8001', { query: { token: user.access_token } });
+  const [isConnected, setIsConnected] = useState<boolean>(socket?.connected || false);
+
+  const sendMessage = (value: Message): void => {
+    console.log('alo ?');
+    socket?.emit('chat', value as any);
+  };
+
+  const messageListener = (message: Message, user: UserRoom): void => {
+    console.log('message reçu ! ', message, user);
+    const msg: MessageReceived = { message, user };
+    setMessages([...messages, msg]);
+  };
+
+  useEffect(() => {
+    socket?.on('connect', () => {
+      console.log('connecté !');
+      socket?.emit('joinRoom', id);
+      setIsConnected(true);
+    });
+
+    socket?.on('disconnect', () => {
+      setIsConnected(false);
+    });
+
+    socket?.on('chat', messageListener);
+
+    return () => {
+      socket?.off('connect');
+      socket?.off('disconnect');
+      socket?.off('chat', messageListener);
+    };
+  }, [setIsConnected, messageListener]);
+
+  const leaveRoom = () => {
+    socket?.disconnect();
+    navigate('/', { replace: true });
+  };
+
   return (
-
     <div>
-      <img src="https://cdn.discordapp.com/attachments/888154458528301097/1163232163274174555/Skull-King-logo.png?ex=653ed35f&is=652c5e5f&hm=cdfdaff777b271952802f8bdb79c3217a7e57d1333ae2cbc67d3c21a329c1697&" alt="Skull King Logo" />
-      <h2>Jouer ici</h2>
+      {isConnected ? <button onClick={leaveRoom}>Quitter la salle</button> : <p>Connecting...</p>}
+      <MessageInput send={sendMessage} />
+      <Messages messages={messages} />
     </div>
-
   );
 };
 

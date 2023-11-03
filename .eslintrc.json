@@ -21,12 +21,16 @@
     "eqeqeq": "error",
     "indent": [
       "error",
-      2
+      2,
+      {
+        "SwitchCase": 1
+      }
     ],
     "@typescript-eslint/semi": [
       "error",
       "always"
-    ]
+    ],
+    "@typescript-eslint/explicit-function-return-type": "off"
   },
   "settings": {
     "import/resolver" : {

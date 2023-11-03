@@ -1,117 +1,116 @@
-import { Card } from "../types/Card";
-import { CardType } from "../types/CardType";
-import util from 'util';
+import { type Card } from 'types/Card';
+import { type CardType } from 'types/CardType';
 
 // Types of cards
 const EscapeType: CardType = {
-  name: "Fuite",
-  superior_to: [],
-}
+  name: 'Fuite',
+  superior_to: []
+};
 
 const GreenType: CardType = {
-  name: "Vert",
-  superior_to: [EscapeType],
-}
+  name: 'Vert',
+  superior_to: [EscapeType]
+};
 
 const YellowType: CardType = {
-  name: "Jaune",
-  superior_to: [EscapeType],
-}
+  name: 'Jaune',
+  superior_to: [EscapeType]
+};
 
 const PurpleType: CardType = {
-  name: "Violet",
-  superior_to: [EscapeType],
-}
+  name: 'Violet',
+  superior_to: [EscapeType]
+};
 
 const BlackType: CardType = {
-  name: "Atout",
-  superior_to: [EscapeType, GreenType, YellowType, PurpleType],
-}
+  name: 'Atout',
+  superior_to: [EscapeType, GreenType, YellowType, PurpleType]
+};
 
 const MermaidType: CardType = {
-  name: "Sirène",
+  name: 'Sirène',
   superior_to: [EscapeType, GreenType, YellowType, PurpleType, BlackType],
-  circular_winner: true,
-}
+  circular_winner: true
+};
 
 const PirateType: CardType = {
-  name: "Pirate",
-  superior_to: [EscapeType, GreenType, YellowType, PurpleType, BlackType, MermaidType],
-}
+  name: 'Pirate',
+  superior_to: [EscapeType, GreenType, YellowType, PurpleType, BlackType, MermaidType]
+};
 
 const SkullKingType: CardType = {
-  name: "Skull King",
-  superior_to: [EscapeType, GreenType, YellowType, PurpleType, BlackType, PirateType],
-}
+  name: 'Skull King',
+  superior_to: [EscapeType, GreenType, YellowType, PurpleType, BlackType, PirateType]
+};
 
-MermaidType.superior_to.push(SkullKingType)
+MermaidType.superior_to.push(SkullKingType);
 
-const GreenCards: Card[] = []
-const YellowCards: Card[] = []
-const PurpleCards: Card[] = []
-const BlackCards: Card[] = []
+const GreenCards: Card[] = [];
+const YellowCards: Card[] = [];
+const PurpleCards: Card[] = [];
+const BlackCards: Card[] = [];
 
 interface LoopUtility {
-  color: string,
-  type: CardType,
-  deck: Card[],
+  color: string
+  type: CardType
+  deck: Card[]
 }
 const loopUtilities: LoopUtility[] = [
-  { color: "green", type: GreenType, deck: GreenCards },
-  { color: "yellow", type: YellowType, deck: YellowCards },
-  { color: "purple", type: PurpleType, deck: PurpleCards },
-  { color: "black", type: BlackType, deck: BlackCards },
+  { color: 'green', type: GreenType, deck: GreenCards },
+  { color: 'yellow', type: YellowType, deck: YellowCards },
+  { color: 'purple', type: PurpleType, deck: PurpleCards },
+  { color: 'black', type: BlackType, deck: BlackCards }
 
-]
+];
 
 loopUtilities.forEach((utility) => {
   for (let i = 1; i <= 14; i++) {
     utility.deck.push({
       type: utility.type,
       value: i,
-      imgPath: `/assets/images/cards/${utility.color}/${i}.png`,
-    })
+      imgPath: `/assets/images/cards/${utility.color}/${i}.png`
+    });
   }
 });
 
-const EscapeCards: Card[] = []
+const EscapeCards: Card[] = [];
 for (let i = 1; i <= 5; i++) {
   EscapeCards.push({
     type: EscapeType,
-    imgPath: `/assets/images/cards/escape.png`,
-  })
+    imgPath: '/assets/images/cards/escape.png'
+  });
 }
 
-const MermaidCards: Card[] = []
+const MermaidCards: Card[] = [];
 for (let i = 1; i <= 2; i++) {
   MermaidCards.push({
     type: MermaidType,
-    imgPath: `/assets/images/cards/mermaid.png`,
-  })
+    imgPath: '/assets/images/cards/mermaid.png'
+  });
 }
 
-const PirateCards: Card[] = []
+const PirateCards: Card[] = [];
 for (let i = 1; i <= 5; i++) {
   PirateCards.push({
     type: PirateType,
-    imgPath: `/assets/images/cards/pirate.png`,
-  })
+    imgPath: '/assets/images/cards/pirate.png'
+  });
 }
 
 const SkullKing: Card = {
   type: SkullKingType,
-  imgPath: `/assets/images/cards/skullKing.png`,
-}
+  imgPath: '/assets/images/cards/skullKing.png'
+};
 
-const cards: Card[] = []
-cards.push(...EscapeCards)
-cards.push(...GreenCards)
-cards.push(...YellowCards)
-cards.push(...PurpleCards)
-cards.push(...BlackCards)
-cards.push(...MermaidCards)
-cards.push(...PirateCards)
-cards.push(SkullKing)
+const cards: Card[] = [];
+cards.push(...EscapeCards);
+cards.push(...GreenCards);
+cards.push(...YellowCards);
+cards.push(...PurpleCards);
+cards.push(...BlackCards);
+cards.push(...MermaidCards);
+cards.push(...PirateCards);
+cards.push(SkullKing);
 
 export default cards;
 

@@ -1,4 +1,4 @@
 export interface Action<T> {
-  type: T,
-  payload: unknown,
+  type: T
+  payload: any
 }

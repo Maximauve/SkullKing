@@ -1,13 +1,13 @@
-import { PropsWithChildren, useContext, useEffect } from "react"
-import { CardContext } from "../../contexts/CardProvider";
-import useCards from "../../hooks/useCard";
+import React, { type PropsWithChildren, useContext/*, useEffect */ } from 'react';
+import { CardContext } from 'contexts/CardProvider';
+// import { type Card } from 'types/Card';
+// import useCards from '../../hooks/useCard';
 
 interface DeckProps {
-
+  coucou: string
 }
 
 export const Deck: React.FC<PropsWithChildren<DeckProps>> = ({ children }) => {
-
   const [state] = useContext(CardContext);
 
   console.log(state);
@@ -16,6 +16,5 @@ export const Deck: React.FC<PropsWithChildren<DeckProps>> = ({ children }) => {
       <p>coucou</p>
       {children}
     </div>
-  )
-
-}
+  );
+};

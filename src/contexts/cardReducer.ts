@@ -1,40 +1,40 @@
-import { Action } from "../types/Action";
-import { Card } from "../types/Card";
+import { type Action } from 'types/Action';
+import { type Card } from 'types/Card';
 
 export enum CardActionType {
-  INIT_CARDS = "INIT_CARDS",
-  SET_LOADING = "SET_LOADING",
-  SHUFFLE = "SHUFFLE",
+  INIT_CARDS = 'INIT_CARDS',
+  SET_LOADING = 'SET_LOADING',
+  SHUFFLE = 'SHUFFLE',
 }
 
 export interface CardState {
-  cards: Card[],
-  loading: boolean,
+  cards: Card[]
+  loading: boolean
 }
 
 export const initialCardState: CardState = {
   cards: [],
-  loading: true,
-}
+  loading: true
+};
 
-export const CardReducer = (state: CardState, action: Action<CardActionType>) => {
+export const CardReducer = (state: CardState, action: Action<CardActionType>): CardState => {
   switch (action.type) {
     case CardActionType.INIT_CARDS:
       return {
         ...state,
         cards: action.payload as Card[],
-        loading: false,
-      }
+        loading: false
+      };
     case CardActionType.SET_LOADING:
       return {
         ...state,
-        loading: action.payload as boolean,
-      }
+        loading: action.payload as boolean
+      };
     case CardActionType.SHUFFLE:
       return {
         ...state,
         cards: action.payload as Card[],
-        loading: true,
-      }
+        loading: true
+      };
   }
-}
+};
