@@ -19,6 +19,7 @@ const Room: React.FC = () => {
   const [messages, setMessages] = useState<MessageReceived[]>([]);
   const socket = io('http://localhost:8001', { query: { token: user.access_token } });
   const [isConnected, setIsConnected] = useState<boolean>(socket?.connected || false);
+  const [, setMembers] = useState<UserRoom[]>([]);
 
   const sendMessage = (value: Message): void => {
     console.log('alo ?');
@@ -29,6 +30,10 @@ const Room: React.FC = () => {
     console.log('message reçu ! ', message, user);
     const msg: MessageReceived = { message, user };
     setMessages([...messages, msg]);
+  };
+
+  const membersListener = (members: UserRoom[]): void => {
+    setMembers(members);
   };
 
   useEffect(() => {
@@ -44,12 +49,14 @@ const Room: React.FC = () => {
 
     socket?.on('chat', messageListener);
 
+    socket?.on('members', membersListener);
+
     return () => {
       socket?.off('connect');
       socket?.off('disconnect');
       socket?.off('chat', messageListener);
     };
-  }, [setIsConnected, messageListener]);
+  }, [setIsConnected, messageListener, membersListener]);
 
   const leaveRoom = () => {
     socket?.disconnect();

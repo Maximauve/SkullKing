@@ -1,8 +1,9 @@
 import { post } from 'config/requests';
 import { type RoomOptions } from 'types/RoomOptions';
 import { type User } from 'types/user/User';
-import { type Room201 } from '../types/api/Room201';
-import { type Response400 } from '../types/api/Response400';
+import { type Room201 } from 'types/api/Room201';
+import { type Response400 } from 'types/api/Response400';
+import { type Response501 } from 'types/api/Response501';
 
 const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
@@ -12,13 +13,16 @@ const redis = {
     const response: Response = await post(`${BASE_URL}/room`, body, user.access_token);
 
     if (response.status !== 201) {
+      if (response.status === 501) {
+        const res: Response501 = await response.json();
+        throw new Error(res.message);
+      }
       const res: Response400 = await response.json();
       throw new Error(res.message.map((m) => m).join(', '));
     }
 
     return await response.json() as Room201;
   }
-
 };
 
 export default redis;
