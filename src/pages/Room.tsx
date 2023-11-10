@@ -19,6 +19,7 @@ const Room: React.FC = () => {
   const [messages, setMessages] = useState<MessageReceived[]>([]);
   const socket = io(process.env.REACT_APP_API_BASE_URL as string, { query: { token: user.access_token } });
   const [isConnected, setIsConnected] = useState<boolean>(socket?.connected || false);
+  const [members, setMembers] = useState<UserRoom[]>([]);
 
   const sendMessage = (value: Message): void => {
     console.log('alo ?');
@@ -29,6 +30,10 @@ const Room: React.FC = () => {
     console.log('message reçu ! ', message, user);
     const msg: MessageReceived = { message, user };
     setMessages([...messages, msg]);
+  };
+
+  const memberListener = (members: UserRoom[]): void => {
+    setMembers(members);
   };
 
   useEffect(() => {
@@ -43,6 +48,8 @@ const Room: React.FC = () => {
     });
 
     socket?.on('chat', messageListener);
+
+    socket?.on('members', memberListener);
 
     return () => {
       socket?.off('connect');
@@ -59,6 +66,11 @@ const Room: React.FC = () => {
   return (
     <div>
       {isConnected ? <button onClick={leaveRoom}>Quitter la salle</button> : <p>Connecting...</p>}
+      <ul>
+        {members.map((member) => (
+          <li key={member.userId}>{member.username}</li>
+        ))}
+      </ul>
       <MessageInput send={sendMessage} />
       <Messages messages={messages} />
     </div>
