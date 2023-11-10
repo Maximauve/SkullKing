@@ -12,13 +12,14 @@
     height: 53px;
     border-radius: 5px;
     background: $goldBorderGradient;
+    transition: 1s;
     .gradient-border-inner {
       background: $goldGradient;
       margin: auto;
       width: 150px;
       height: 50px;
       border-radius: 5px;
-      color: $goldBorderGradient;
+      
       .play-button-text {
         position: relative;
         top: 50%;
@@ -33,7 +34,19 @@
         background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+        color: #E2A916;
 
+      }
+    }
+    &:hover {
+      cursor: pointer;
+      .gradient-border-inner {
+        background: $goldGradientHover;
+        .play-button-text {
+          background-clip: text;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
       }
     }
   }
