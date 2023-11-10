@@ -14,8 +14,8 @@ const LogoutButton = (): React.JSX.Element => {
 
   return (
     <>
-      <button onClick={Logout}>
-        Logout
+      <button onClick={Logout} className='logoutCount'>
+        <img src="" alt="Skull King Logo" />
       </button>
     </>
   );
