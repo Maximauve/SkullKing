@@ -1,11 +1,16 @@
-import React, { useState, useEffect, useContext } from 'react';
-import io from 'socket.io-client';
+import React, { useState, useEffect, useContext, useCallback } from 'react';
+// import io from 'socket.io-client';
 import { MessageInput } from 'components/messages/MessageInput';
-import { Messages } from 'components/messages/Messages';
+import { MessagesList } from 'components/messages/MessagesList';
 import { type Message, type MessageReceived } from 'types/inputs/Message';
 import { UserContext } from 'contexts/UserProvider';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Outlet, useNavigate/* , useParams */ } from 'react-router-dom';
 import { type UserRoom } from 'types/user/UserRoom';
+import useSocket from 'hooks/useSocket';
+import SocketProvider from '../contexts/SocketProvider';
+// import { type Socket } from 'socket.io-client';
+// import { SocketContext } from '../contexts/SocketProvider';
+// import useSocket from '../hooks/useSocket';
 
 const Room: React.FC = () => {
   const [{ user }] = useContext(UserContext);
@@ -15,10 +20,16 @@ const Room: React.FC = () => {
     return null;
   }
 
-  const { id } = useParams<{ id: string }>();
+  const socket = useSocket();
+  // const [{ socket }] = useContext(SocketContext);
+  // if (socket === undefined) {
+  //   connect();
+  // }
+  //
+  // const { id } = useParams<{ id: string }>();
   const [messages, setMessages] = useState<MessageReceived[]>([]);
-  const socket = io(process.env.REACT_APP_API_BASE_URL as string, { query: { token: user.access_token } });
-  const [isConnected, setIsConnected] = useState<boolean>(socket?.connected || false);
+  // const socket = io(process.env.REACT_APP_API_BASE_URL as string, { query: { token: user.access_token } });
+  // const [isConnected, setIsConnected] = useState<boolean>(socket?.connected || false);
   const [members, setMembers] = useState<UserRoom[]>([]);
 
   const sendMessage = (value: Message): void => {
@@ -26,27 +37,17 @@ const Room: React.FC = () => {
     socket?.emit('chat', value as any);
   };
 
-  const messageListener = (message: Message, user: UserRoom): void => {
+  const messageListener = useCallback((message: Message, user: UserRoom): void => {
     console.log('message reçu ! ', message, user);
     const msg: MessageReceived = { message, user };
     setMessages([...messages, msg]);
-  };
+  }, []);
 
-  const memberListener = (members: UserRoom[]): void => {
+  const memberListener = useCallback((members: UserRoom[]): void => {
     setMembers(members);
-  };
+  }, []);
 
   useEffect(() => {
-    socket?.on('connect', () => {
-      console.log('connecté !');
-      socket?.emit('joinRoom', id);
-      setIsConnected(true);
-    });
-
-    socket?.on('disconnect', () => {
-      setIsConnected(false);
-    });
-
     socket?.on('chat', messageListener);
 
     socket?.on('members', memberListener);
@@ -55,26 +56,35 @@ const Room: React.FC = () => {
       socket?.off('connect');
       socket?.off('disconnect');
       socket?.off('chat', messageListener);
+      socket?.off('members', memberListener);
     };
-  }, [setIsConnected, messageListener]);
+  }, [messageListener]);
 
   const leaveRoom = () => {
     socket?.disconnect();
     navigate('/', { replace: true });
   };
 
+  const [{ user }] = useContext(UserContext);
   return (
-    <div>
-      {isConnected ? <button onClick={leaveRoom}>Quitter la salle</button> : <p>Connecting...</p>}
-      <ul>
-        {members.map((member) => (
-          <li key={member.userId}>{member.username}</li>
-        ))}
-      </ul>
-      <MessageInput send={sendMessage} />
-      <Messages messages={messages} />
-    </div>
+    <SocketProvider user={user}>
+      <MessagesList />
+    </SocketProvider>
   );
+
+  // return (
+  //
+  //   <div>
+  //     <button onClick={leaveRoom}>Quitter la salle</button>
+  //     <ul>
+  //       {members.map((member) => (
+  //         <li key={member.userId}>{member.username}</li>
+  //       ))}
+  //     </ul>
+  //     <MessageInput send={sendMessage} />
+  //     <Messages messages={messages} />
+  //   </div>
+  // );
 };
 
 export default Room;
