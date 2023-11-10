@@ -93,7 +93,7 @@ const PirateCards: Card[] = [];
 for (let i = 1; i <= 5; i++) {
   PirateCards.push({
     type: PirateType,
-    imgPath: '/assets/images/cards/pirate.png'
+    imgPath: `/assets/images/cards/pirate/${i}.png`
   });
 }
 
