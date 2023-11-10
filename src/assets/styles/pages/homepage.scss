@@ -2,6 +2,12 @@
 @import "src/assets/styles/components/home/PlayButton.scss";
 @import "src/assets/styles/components/user/Logout.scss";
 
+.posDeco{
+  position: absolute;
+  top: 10%;
+  left: 90%;
+  transform: translate(-50%, -50%);
+}
 .homepage {
   position: absolute;
   top: 50%;
@@ -13,3 +19,4 @@
     }
   }
 }
+
