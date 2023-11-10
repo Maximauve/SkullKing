@@ -9,7 +9,7 @@ const HomePage: React.FC = () => {
 
   return (
     <div>
-      <div className='posDeco'>
+      <div className='posLogout'>
         {state.user !== undefined &&
           <LogoutButton />
         }
