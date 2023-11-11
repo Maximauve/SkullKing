@@ -1,7 +1,6 @@
-import React, { type Dispatch, type PropsWithChildren, useContext, useEffect, useReducer, useState } from 'react';
+import React, { type Dispatch, type PropsWithChildren, useEffect, useReducer, useState } from 'react';
 import { initialSocketState, type SocketActionType, SocketReducer, type SocketState } from 'contexts/socketReducer';
 import { type Action } from 'types/Action';
-import { UserContext } from 'contexts/UserProvider';
 import { io } from 'socket.io-client';
 import { useNavigate, useParams } from 'react-router-dom';
 import { type User } from '../types/user/User';
@@ -48,8 +47,13 @@ const SocketProvider: React.FC<PropsWithChildren<props>> = ({ children, user }) 
       });
     });
 
+    socket?.on('disconnect', () => {
+      setIsConnected(false);
+    });
+
     return () => {
       socket?.off('connect');
+      socket?.off('disconnect');
     };
   }, []);
 
