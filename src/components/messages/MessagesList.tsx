@@ -1,10 +1,10 @@
-import React/* , { useState } */, { useCallback, useEffect, useState } from 'react';
+import React/* , { useState } */, { /* useCallback, */ useEffect, useState } from 'react';
 import { type Message, type MessageReceived } from 'types/inputs/Message';
 import useSocket from 'hooks/useSocket';
 import { useNavigate } from 'react-router-dom';
-import { MessageInput } from './MessageInput';
-import { Messages } from './Messages';
-import { type UserRoom } from '../../types/user/UserRoom';
+import { MessageInput } from 'components/messages/MessageInput';
+import { Messages } from 'components/messages/Messages';
+import { type UserRoom } from 'types/user/UserRoom';
 
 export const MessagesList = (): React.JSX.Element => {
   const navigate = useNavigate();
@@ -13,14 +13,19 @@ export const MessagesList = (): React.JSX.Element => {
 
   const sendMessage = (value: Message): void => {
     console.log('alo ?');
-    socket?.emit('chat', value as any);
+    socket?.emit('chat', value as any, (response: any): any => {
+      console.log('response : ', response);
+    });
   };
 
-  const messageListener = useCallback((message: Message, user: UserRoom): void => {
+  const messageListener = /* useCallback( */(message: Message, user: UserRoom): void => {
     console.log('message reçu ! ', message, user);
     const msg: MessageReceived = { message, user };
+    console.log(`append message ${msg.message.text} to messages: `, messages);
+    console.log('new value must be : ', [...messages, msg]);
     setMessages([...messages, msg]);
-  }, []);
+    console.log('messages after append: ', messages);
+  }/* , []) */;
 
   useEffect(() => {
     // TODO : si les messages sont vides, fetch les messages de la room (TO IMPLEMENT API)

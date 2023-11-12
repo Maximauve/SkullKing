@@ -19,6 +19,7 @@ export const initialSocketState: SocketState = {
 export const SocketReducer = (state: SocketState, action: Action<SocketActionType>): SocketState => {
   switch (action.type) {
     case SocketActionType.SET_SOCKET:
+      console.log('[DISPATCH] SET_SOCKET : ', action.payload);
       return {
         ...state,
         socket: action.payload

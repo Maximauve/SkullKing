@@ -1,9 +1,12 @@
-import React, { type Dispatch, type PropsWithChildren, useEffect, useReducer, useState } from 'react';
-import { initialSocketState, type SocketActionType, SocketReducer, type SocketState } from 'contexts/socketReducer';
+import React, { type Dispatch, type PropsWithChildren, /* useContext, */ useEffect, useReducer, useState } from 'react';
+import { initialSocketState, SocketActionType, SocketReducer, type SocketState } from 'contexts/socketReducer';
 import { type Action } from 'types/Action';
 import { io } from 'socket.io-client';
 import { useNavigate, useParams } from 'react-router-dom';
+// import { type User } from '../types/user/User';
+// import { UserContext } from './UserProvider';
 import { type User } from '../types/user/User';
+import LoginRegisterModal from '../components/user/LoginRegisterModal';
 
 export const SocketContext = React.createContext<[SocketState, Dispatch<Action<SocketActionType>>]>([
   initialSocketState,
@@ -13,10 +16,13 @@ export const SocketContext = React.createContext<[SocketState, Dispatch<Action<S
 const initializeState = (user: User | undefined): SocketState => {
   // const [{ user }] = useContext(UserContext);
   if (user !== undefined) {
-    return {
+    console.log('[SocketProvider] User is defined : ', user);
+    const state: SocketState = {
       socket: io(process.env.REACT_APP_API_BASE_URL as string, { query: { token: user.access_token } }),
       loading: false
     };
+    console.log('[SocketProvider] initializeState : ', state);
+    return state;
   }
   return initialSocketState;
 };
@@ -24,31 +30,38 @@ const initializeState = (user: User | undefined): SocketState => {
 interface props {
   user: User | undefined
 }
-const SocketProvider: React.FC<PropsWithChildren<props>> = ({ children, user }) => {
-  const [state, dispatch] = useReducer(SocketReducer, initialSocketState, initializeState as any);
+const SocketProvider: React.FC<PropsWithChildren<props>> = ({ user, children }) => {
+  const [state, dispatch] = useReducer(SocketReducer, user, initializeState as any);
   const { socket } = state;
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const [isConnected, setIsConnected] = useState<boolean>(socket?.connected ?? false);
+  // const [{ user }] = useContext(UserContext);
+  const [isLogged] = useState<boolean>(user !== undefined);
 
   useEffect(() => {
     if (id === undefined) {
       navigate('/');
-      return;
+    }
+    console.log('[SocketProvider] socket : ', socket);
+
+    if (socket === undefined && isLogged) {
+      const newSocket = io(process.env.REACT_APP_API_BASE_URL as string, { query: { token: (user as User).access_token } });
+      console.log('[SocketProvider] newSocket : ', newSocket);
+      dispatch({ type: SocketActionType.SET_SOCKET, payload: newSocket });
+      console.log('[SocketProvider] socket should now be defined : ', socket);
     }
 
-    socket?.on('connect', () => {
-      socket?.emit('joinRoom', id, (error: any): void => {
-        if (error !== null) {
-          console.log('error from joinRoom : ', error);
-        } else {
-          setIsConnected(true);
-        }
+    if (socket !== undefined) {
+      socket?.on('connect', () => {
+        socket?.emit('joinRoom', id, (error: any): void => {
+          if (error !== null) {
+            console.log('error from joinRoom : ', error);
+          }
+        });
       });
-    });
+    }
 
     socket?.on('disconnect', () => {
-      setIsConnected(false);
     });
 
     return () => {
@@ -57,7 +70,13 @@ const SocketProvider: React.FC<PropsWithChildren<props>> = ({ children, user }) 
     };
   }, []);
 
-  if (!isConnected) {
+  if (!isLogged) {
+    return (
+      <LoginRegisterModal />
+    );
+  }
+
+  if (socket?.connected ?? false) {
     return (
       <div>
         <p>Connexion en cours...</p>
