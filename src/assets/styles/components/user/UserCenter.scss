@@ -1,0 +1,24 @@
+
+.user-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    .user-profil-picture {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        box-shadow: 0 0 0 2px #ECDB8B,0 0 0 5px #E2A916, 0 0 0 7px #321206;
+        margin: 15px;
+        &:hover {
+            width: 75px;
+            height: 75px;
+        }
+    }
+}
+
+.display-user-center {
+    position: absolute;
+    top: 80px;
+    right: 80px;
+}
