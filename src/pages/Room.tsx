@@ -1,13 +1,14 @@
-import React, { useState, useEffect, useContext, useCallback } from 'react';
+import React, { useContext } from 'react';
 // import io from 'socket.io-client';
-import { MessageInput } from 'components/messages/MessageInput';
+// import { MessageInput } from 'components/messages/MessageInput';
 import { MessagesList } from 'components/messages/MessagesList';
-import { type Message, type MessageReceived } from 'types/inputs/Message';
+// import { type Message, type MessageReceived } from 'types/inputs/Message';
+// import { UserContext } from 'contexts/UserProvider';
+// import { Outlet, useNavigate/* , useParams */ } from 'react-router-dom';
+// import { type UserRoom } from 'types/user/UserRoom';
+// import useSocket from 'hooks/useSocket';
+import SocketProvider from 'contexts/SocketProvider';
 import { UserContext } from 'contexts/UserProvider';
-import { Outlet, useNavigate/* , useParams */ } from 'react-router-dom';
-import { type UserRoom } from 'types/user/UserRoom';
-import useSocket from 'hooks/useSocket';
-import SocketProvider from '../contexts/SocketProvider';
 // import { type Socket } from 'socket.io-client';
 // import { SocketContext } from '../contexts/SocketProvider';
 // import useSocket from '../hooks/useSocket';
@@ -45,6 +46,7 @@ const Room: React.FC = () => {
   //   };
   // }, []);
 
+  // console.log('[ROOM] user : ', user);
   return (
     <SocketProvider user={user}>
       <MessagesList />
