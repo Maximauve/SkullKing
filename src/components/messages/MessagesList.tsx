@@ -18,14 +18,14 @@ export const MessagesList = (): React.JSX.Element => {
     });
   };
 
-  const messageListener = /* useCallback( */(message: Message, user: UserRoom): void => {
+  const messageListener = (message: Message, user: UserRoom): void => {
     console.log('message reçu ! ', message, user);
     const msg: MessageReceived = { message, user };
     console.log(`append message ${msg.message.text} to messages: `, messages);
     console.log('new value must be : ', [...messages, msg]);
     setMessages([...messages, msg]);
     console.log('messages after append: ', messages);
-  }/* , []) */;
+  };
 
   useEffect(() => {
     // TODO : si les messages sont vides, fetch les messages de la room (TO IMPLEMENT API)
