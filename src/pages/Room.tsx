@@ -17,7 +17,7 @@ const Room: React.FC = () => {
 
   const { id } = useParams<{ id: string }>();
   const [messages, setMessages] = useState<MessageReceived[]>([]);
-  const socket = io('http://localhost:8001', { query: { token: user.access_token } });
+  const socket = io(process.env.REACT_APP_API_BASE_URL as string, { query: { token: user.access_token } });
   const [isConnected, setIsConnected] = useState<boolean>(socket?.connected || false);
 
   const sendMessage = (value: Message): void => {

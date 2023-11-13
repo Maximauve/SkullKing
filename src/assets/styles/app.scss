@@ -1,7 +1,8 @@
-@import "src/assets/styles/_base/_colors";
-@import 'pages/HomePage';
-@import 'components/user/LoginRegisterModal';
-@import 'pages/CreateRoom';
+@import 'src/assets/styles/_base/_colors';
+@import 'src/assets/styles/pages/HomePage';
+@import 'src/assets/styles/components/user/LoginRegisterModal';
+@import 'src/assets/styles/components/user/UserCenter';
+@import 'src/assets/styles/pages/CreateRoom';
 
 
 body, html, #root, .App {

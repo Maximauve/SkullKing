@@ -4,8 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import { type RoomOptions } from 'types/RoomOptions';
 import redis from 'config/redis';
 import { UserContext } from 'contexts/UserProvider';
+import UserCenter from 'components/user/UserCenter';
 
 const CreateRoom: React.FC = () => {
+  const [state] = useContext(UserContext);
   const navigate = useNavigate();
   const [{ user }] = useContext(UserContext);
 
@@ -34,6 +36,11 @@ const CreateRoom: React.FC = () => {
   return (
     <div>
       <LoginRegisterModal />
+      <div className='display-user-center'>
+        {state.user !== undefined &&
+          <UserCenter />
+        }
+      </div>
       <div className='start-game'>
         <p>Pour créer une partie, par ici :</p>
         {error !== '' && <p>{error}</p>}
