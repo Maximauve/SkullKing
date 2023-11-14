@@ -2,8 +2,8 @@ import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import HomePage from 'pages/HomePage';
 import RoomLayout from 'components/layout/RoomLayout';
-import Room from 'pages/Room';
 import CreateRoom from 'pages/CreateRoom';
+import SocketLayout from 'components/layout/SocketLayout';
 
 export const Router = createBrowserRouter([
   {
@@ -22,7 +22,7 @@ export const Router = createBrowserRouter([
       },
       {
         path: ':id',
-        element: <Room />
+        element: <SocketLayout />
       },
       {
         path: 'create',

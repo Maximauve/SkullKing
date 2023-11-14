@@ -30,7 +30,10 @@
       "error",
       "always"
     ],
-    "@typescript-eslint/explicit-function-return-type": "off"
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "no-prototype-builtins": "off",
+    "@typescript-eslint/strict-boolean-expressions": "off",
+    "react/no-unescaped-entities": "off"
   },
   "settings": {
     "import/resolver" : {
