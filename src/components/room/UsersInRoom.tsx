@@ -8,6 +8,7 @@ const UsersInRoom: React.FC = () => {
   const [members, setMembers] = useState<UserRoom[]>([]);
 
   const memberListener = useCallback((members: UserRoom[]): void => {
+    console.log('members : ', members);
     setMembers(members);
   }, []);
 
@@ -20,11 +21,16 @@ const UsersInRoom: React.FC = () => {
   }, [memberListener]);
 
   return (
-    <ul>
-      {members.map((member) => (
-        <li key={member.userId}>{member.username}</li>
-      ))}
-    </ul>
+    <div className='user-list'>
+      <div className='user-counter'>
+        <div className='counter'>{members.length}</div>
+      </div>
+      <ul>
+        {members.length > 0 && members.map((member) => (
+          <li key={member.userId}>{member.username}</li>
+        ))}
+      </ul>
+    </div>
   );
 };
 

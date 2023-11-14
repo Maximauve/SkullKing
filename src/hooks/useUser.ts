@@ -37,20 +37,6 @@ const useUser = () => {
     } finally {
       dispatch({ type: UserActionType.SET_LOADING, payload: false });
     }
-    //
-    // api.register(userDto).then((user) => {
-    //   const userLoginDto: UserLoginDTO = {
-    //     email: user.email,
-    //     password: userDto.password
-    //   };
-    //   logIn(userLoginDto).catch((err) => {
-    //     dispatch({ type: UserActionType.SET_LOADING, payload: false });
-    //     throw new Error(err.message);
-    //   });
-    // }).catch((error) => {
-    //   dispatch({ type: UserActionType.SET_LOADING, payload: false });
-    //   throw new Error(error.message);
-    // });
   };
 
   const logOut = (): void => {
