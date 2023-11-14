@@ -21,11 +21,16 @@ const UsersInRoom: React.FC = () => {
   }, [memberListener]);
 
   return (
-    <ul>
-      {members.length > 0 && members.map((member) => (
-        <li key={member.userId}>{member.username}</li>
-      ))}
-    </ul>
+    <div className='user-list'>
+      <div className='user-counter'>
+        <div className='counter'>{members.length}</div>
+      </div>
+      <ul>
+        {members.length > 0 && members.map((member) => (
+          <li key={member.userId}>{member.username}</li>
+        ))}
+      </ul>
+    </div>
   );
 };
 

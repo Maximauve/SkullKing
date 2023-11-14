@@ -8,8 +8,8 @@ const Room: React.FC = () => {
   const [{ user }] = useContext(UserContext);
   return (
     <SocketProvider user={user}>
-      <MessagesList />
       <UsersInRoom />
+      <MessagesList />
     </SocketProvider>
   );
 };
