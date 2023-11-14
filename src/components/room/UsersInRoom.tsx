@@ -1,25 +1,10 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import useSocket from 'hooks/useSocket';
-
+import React from 'react';
 import { type UserRoom } from 'types/user/UserRoom';
 
-const UsersInRoom: React.FC = () => {
-  const socket = useSocket();
-  const [members, setMembers] = useState<UserRoom[]>([]);
-
-  const memberListener = useCallback((members: UserRoom[]): void => {
-    console.log('members : ', members);
-    setMembers(members);
-  }, []);
-
-  useEffect(() => {
-    socket?.on('members', memberListener);
-
-    return () => {
-      socket?.off('members', memberListener);
-    };
-  }, [memberListener]);
-
+interface Props {
+  members: UserRoom[]
+}
+const UsersInRoom: React.FC<Props> = ({ members }) => {
   return (
     <div className='user-list'>
       <div className='user-counter'>

@@ -1,12 +1,12 @@
-import React/* , { useState } */, { /* useCallback, */ useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { type Message, type MessageReceived } from 'types/inputs/Message';
-import useSocket from 'hooks/useSocket';
 import { useNavigate } from 'react-router-dom';
 import { MessageInput } from 'components/messages/MessageInput';
 import { Messages } from 'components/messages/Messages';
 import { type UserRoom } from 'types/user/UserRoom';
+import useSocket from 'hooks/useSocket';
 
-export const MessagesList = (): React.JSX.Element => {
+const MessagesList = (): React.JSX.Element => {
   const navigate = useNavigate();
   const socket = useSocket();
   const [messages, setMessages] = useState<MessageReceived[]>([]);
@@ -49,3 +49,5 @@ export const MessagesList = (): React.JSX.Element => {
     </div>
   );
 };
+
+export default MessagesList;

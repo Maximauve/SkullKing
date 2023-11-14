@@ -1,20 +1,16 @@
-import React, { type PropsWithChildren, useContext/*, useEffect */ } from 'react';
-import { CardContext } from 'contexts/CardProvider';
-// import { type Card } from 'types/Card';
-// import useCards from '../../hooks/useCard';
+import React from 'react';
+import { type Card } from 'types/Card';
+import { CardItem } from 'components/deck/CardItem';
 
-interface DeckProps {
-  coucou: string
+interface Props {
+  cards: Card[]
 }
-
-export const Deck: React.FC<PropsWithChildren<DeckProps>> = ({ children }) => {
-  const [state] = useContext(CardContext);
-
-  console.log(state);
+export const Deck: React.FC<Props> = ({ cards }) => {
   return (
     <div>
-      <p>coucou</p>
-      {children}
+      { cards.length > 0 && cards.map((card, index) => (
+        <CardItem key={index} card={card} />
+      ))}
     </div>
   );
 };
