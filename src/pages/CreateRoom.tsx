@@ -10,9 +10,16 @@ const CreateRoom: React.FC = () => {
   const [state] = useContext(UserContext);
   const navigate = useNavigate();
   const [{ user }] = useContext(UserContext);
+  const [room, setRoom] = useState<string>('');
 
   const [error, setError] = useState<string>('');
-
+  const joinRoomClick = async (): Promise<void> => {
+    if (user === undefined) {
+      setError('Vous devez être connecté pour rejoindre une partie');
+      return;
+    }
+    navigate(`/room/${room}`);
+  };
   const handleButtonClick = async (): Promise<void> => {
     if (user === undefined) {
       setError('Vous devez être connecté pour créer une partie');
@@ -53,8 +60,14 @@ const CreateRoom: React.FC = () => {
           Créer une partie
         </button>
         <p>Rejoindre des amis :</p>
-        <input name="room-name" placeholder="room-name" className="form-control"/>
-        <button type="button">Rejoindre la partie</button>
+        <input name="input-room" placeholder="Nom de la room" className="form-control" onChange={(event) => { setRoom(event.target.value); }} value={room}/>
+        <button type="button" onClick={() => {
+          void (async () => {
+            await joinRoomClick();
+          })();
+        }}>
+          Rejoindre la partie
+        </button>
       </div>
     </div>
   );
