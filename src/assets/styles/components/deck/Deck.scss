@@ -13,4 +13,12 @@
     .card-item:not(:first-child) {
         margin-left: -50px;
     }
+
+    .card {
+        &:hover {
+            cursor: pointer;
+            transform: scale(1.05) translateY(-20px);
+            transition: transform 0.5s;
+        }
+    }
 }

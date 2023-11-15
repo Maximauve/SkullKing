@@ -89,29 +89,29 @@ const Room = () => {
     );
   }
 
-  const customCards: Card[] = [
-    {
-      type: {
-        name: 'Pirate',
-        superior_to: []
-      },
-      imgPath: '/image/cards/pirate/1.png'
-    },
-    {
-      type: {
-        name: 'Pirate',
-        superior_to: []
-      },
-      imgPath: '/image/cards/pirate/2.png'
-    },
-    {
-      type: {
-        name: 'Pirate',
-        superior_to: []
-      },
-      imgPath: '/image/cards/pirate/3.png'
-    }
-  ];
+  // const customCards: Card[] = [
+  //   {
+  //     type: {
+  //       name: 'Pirate',
+  //       superior_to: []
+  //     },
+  //     imgPath: '/image/cards/pirate/1.png'
+  //   },
+  //   {
+  //     type: {
+  //       name: 'Pirate',
+  //       superior_to: []
+  //     },
+  //     imgPath: '/image/cards/pirate/2.png'
+  //   },
+  //   {
+  //     type: {
+  //       name: 'Pirate',
+  //       superior_to: []
+  //     },
+  //     imgPath: '/image/cards/pirate/3.png'
+  //   }
+  // ];
 
   // LOBBY
   // TODO : MAKE LOBBY COMPONENT
@@ -124,7 +124,7 @@ const Room = () => {
           <button onClick={startGame}>Lancer la partie</button>
         )}
 
-        <Deck cards={customCards} />
+        {/* <Deck cards={customCards} /> */}
         <MessagesList/>
       </>
     );
