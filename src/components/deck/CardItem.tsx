@@ -7,11 +7,8 @@ export interface CardProps {
 
 export const CardItem: React.FC<CardProps> = ({ card }) => {
   return (
-    <div>
-      <p>{card.type.name}</p>
-      {(card.value != null) &&
-        <p>{card.value}</p>
-      }
+    <div className="card-item">
+      <img className="card" src={card.imgPath} alt={card.type.name} />
     </div>
   );
 };

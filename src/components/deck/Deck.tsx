@@ -7,7 +7,7 @@ interface Props {
 }
 export const Deck: React.FC<Props> = ({ cards }) => {
   return (
-    <div>
+    <div className='deck'>
       { cards.length > 0 && cards.map((card, index) => (
         <CardItem key={index} card={card} />
       ))}

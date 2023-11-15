@@ -89,17 +89,43 @@ const Room = () => {
     );
   }
 
+  // const customCards: Card[] = [
+  //   {
+  //     type: {
+  //       name: 'Pirate',
+  //       superior_to: []
+  //     },
+  //     imgPath: '/image/cards/pirate/1.png'
+  //   },
+  //   {
+  //     type: {
+  //       name: 'Pirate',
+  //       superior_to: []
+  //     },
+  //     imgPath: '/image/cards/pirate/2.png'
+  //   },
+  //   {
+  //     type: {
+  //       name: 'Pirate',
+  //       superior_to: []
+  //     },
+  //     imgPath: '/image/cards/pirate/3.png'
+  //   }
+  // ];
+
   // LOBBY
   // TODO : MAKE LOBBY COMPONENT
   if (!gameIsStarted) {
     return (
       <>
-        <MessagesList/>
         <UsersInRoom members={members}/>
 
         {myUser !== undefined && myUser.isHost && (
           <button onClick={startGame}>Lancer la partie</button>
         )}
+
+        {/* <Deck cards={customCards} /> */}
+        <MessagesList/>
       </>
     );
   } else {
