@@ -61,7 +61,7 @@ const CreateRoom: React.FC = () => {
           < GoldButtonComponent text="Creer une partie" />
         </div>
         <p>Rejoindre des amis :</p>
-        <input name="input-room" placeholder="Nom de la room" className="form-control" onChange={(event) => { setRoom(event.target.value); }} value={room}/>
+        <input name="input-room" placeholder="Nom de la room" className="form-control text-input" onChange={(event) => { setRoom(event.target.value); }} value={room}/>
         <div onClick={() => {
           void (async () => {
             await joinRoomClick();
