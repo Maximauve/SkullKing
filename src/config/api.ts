@@ -1,4 +1,4 @@
-import { type Card } from 'types/Card';
+import { type Card } from 'types/cards/Card';
 import FullCards from 'script/cardsScript';
 import { type User } from 'types/user/User';
 import { type UserLoginDTO } from 'types/user/UserLoginDTO';

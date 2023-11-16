@@ -31,8 +31,7 @@ const CreateRoom: React.FC = () => {
       host: {
         userId: user.id,
         username: user.username,
-        socketId: null,
-        points: 0
+        socketId: null
       }
     };
     redis.createRoom(obj, user).then((res) => {
