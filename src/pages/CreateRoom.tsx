@@ -5,6 +5,7 @@ import { type RoomOptions } from 'types/RoomOptions';
 import redis from 'config/redis';
 import { UserContext } from 'contexts/UserProvider';
 import UserCenter from 'components/user/UserCenter';
+import GoldButtonComponent from 'components/home/GoldButtonComponent';
 
 const CreateRoom: React.FC = () => {
   const [state] = useContext(UserContext);
@@ -52,22 +53,22 @@ const CreateRoom: React.FC = () => {
       <div className='start-game'>
         <p>Pour créer une partie, par ici :</p>
         {error !== '' && <p>{error}</p>}
-        <button type="button" onClick={() => {
+        <div onClick={() => {
           void (async () => {
             await handleButtonClick();
           })();
         }}>
-          Créer une partie
-        </button>
+          < GoldButtonComponent text="Creer une partie" />
+        </div>
         <p>Rejoindre des amis :</p>
         <input name="input-room" placeholder="Nom de la room" className="form-control" onChange={(event) => { setRoom(event.target.value); }} value={room}/>
-        <button type="button" onClick={() => {
+        <div onClick={() => {
           void (async () => {
             await joinRoomClick();
           })();
         }}>
-          Rejoindre la partie
-        </button>
+          < GoldButtonComponent text="Rejoindre la partie" />
+        </div>
       </div>
     </div>
   );
