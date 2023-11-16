@@ -104,21 +104,70 @@ const Room = () => {
   //       name: 'Pirate',
   //       superior_to: []
   //     },
-  //     imgPath: '/image/cards/pirate/1.png'
+  //     imgPath: '/images/cards/pirate/1.png'
   //   },
   //   {
   //     type: {
   //       name: 'Pirate',
   //       superior_to: []
   //     },
-  //     imgPath: '/image/cards/pirate/2.png'
+  //     imgPath: '/images/cards/pirate/2.png'
   //   },
   //   {
   //     type: {
   //       name: 'Pirate',
   //       superior_to: []
   //     },
-  //     imgPath: '/image/cards/pirate/3.png'
+  //     imgPath: '/images/cards/pirate/3.png'
+  //   },
+  //   {
+  //     type: {
+  //       name: 'Pirate',
+  //       superior_to: []
+  //     },
+  //     imgPath: '/images/cards/pirate/1.png'
+  //   },
+  //   {
+  //     type: {
+  //       name: 'Pirate',
+  //       superior_to: []
+  //     },
+  //     imgPath: '/images/cards/pirate/2.png'
+  //   },
+  //   {
+  //     type: {
+  //       name: 'Pirate',
+  //       superior_to: []
+  //     },
+  //     imgPath: '/images/cards/pirate/3.png'
+  //   },
+  //   {
+  //     type: {
+  //       name: 'Pirate',
+  //       superior_to: []
+  //     },
+  //     imgPath: '/images/cards/pirate/1.png'
+  //   },
+  //   {
+  //     type: {
+  //       name: 'Pirate',
+  //       superior_to: []
+  //     },
+  //     imgPath: '/images/cards/pirate/2.png'
+  //   },
+  //   {
+  //     type: {
+  //       name: 'Pirate',
+  //       superior_to: []
+  //     },
+  //     imgPath: '/images/cards/pirate/3.png'
+  //   },
+  //   {
+  //     type: {
+  //       name: 'Pirate',
+  //       superior_to: []
+  //     },
+  //     imgPath: '/images/cards/pirate/3.png'
   //   }
   // ];
 
