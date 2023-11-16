@@ -56,6 +56,7 @@ const Room = () => {
 
     socket?.on('members', (newMembers: UserRoom[]) => {
       setMembers(newMembers);
+      console.log('myUser : ', newMembers.find((member) => member.socketId === socket?.id));
       setMyUser(newMembers.find((member) => member.socketId === socket?.id));
     });
 
@@ -79,6 +80,11 @@ const Room = () => {
 
     socket?.on('newRound', () => {
       setIsBetTime(false);
+    });
+
+    socket?.on('newPli', ([winner]) => {
+      console.log('[Room] newPli - winner : ', winner);
+      setActionsPlayed([]);
     });
 
     socket?.on('endRound', (newRound: number) => {
@@ -115,79 +121,6 @@ const Room = () => {
     );
   }
 
-  // const customCards: Card[] = [
-  //   {
-  //     type: {
-  //       name: 'Pirate',
-  //       superior_to: []
-  //     },
-  //     imgPath: '/images/cards/pirate/1.png'
-  //   },
-  //   {
-  //     type: {
-  //       name: 'Pirate',
-  //       superior_to: []
-  //     },
-  //     imgPath: '/images/cards/pirate/2.png'
-  //   },
-  //   {
-  //     type: {
-  //       name: 'Pirate',
-  //       superior_to: []
-  //     },
-  //     imgPath: '/images/cards/pirate/3.png'
-  //   },
-  //   {
-  //     type: {
-  //       name: 'Pirate',
-  //       superior_to: []
-  //     },
-  //     imgPath: '/images/cards/pirate/1.png'
-  //   },
-  //   {
-  //     type: {
-  //       name: 'Pirate',
-  //       superior_to: []
-  //     },
-  //     imgPath: '/images/cards/pirate/2.png'
-  //   },
-  //   {
-  //     type: {
-  //       name: 'Pirate',
-  //       superior_to: []
-  //     },
-  //     imgPath: '/images/cards/pirate/3.png'
-  //   },
-  //   {
-  //     type: {
-  //       name: 'Pirate',
-  //       superior_to: []
-  //     },
-  //     imgPath: '/images/cards/pirate/1.png'
-  //   },
-  //   {
-  //     type: {
-  //       name: 'Pirate',
-  //       superior_to: []
-  //     },
-  //     imgPath: '/images/cards/pirate/2.png'
-  //   },
-  //   {
-  //     type: {
-  //       name: 'Pirate',
-  //       superior_to: []
-  //     },
-  //     imgPath: '/images/cards/pirate/3.png'
-  //   },
-  //   {
-  //     type: {
-  //       name: 'Pirate',
-  //       superior_to: []
-  //     },
-  //     imgPath: '/images/cards/pirate/3.png'
-  //   }
-  // ];
-
   // LOBBY
   // TODO : MAKE LOBBY COMPONENT
   if (!gameIsStarted) {
@@ -195,11 +128,10 @@ const Room = () => {
       <>
         <UsersInRoom members={members} number={members.length}/>
 
-        {myUser !== undefined && myUser.isHost && (
+        {myUser?.isHost && (
           <button onClick={startGame}>Lancer la partie</button>
         )}
 
-        {/* <Deck cards={customCards} /> */}
         <MessagesList/>
       </>
     );
@@ -216,6 +148,9 @@ const Room = () => {
         <CardsPlayed actionsPlayed={actionsPlayed} />
 
         <Deck cards={cards} />
+        {myUser?.hasToPlay && (
+          <p>c'est à toi de jouer !</p>
+        )}
       </>
     );
   }

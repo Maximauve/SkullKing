@@ -10,18 +10,17 @@ const SocketLayout = () => {
   const [{ user }] = useContext(UserContext);
   const navigate = useNavigate();
 
-  if (user === undefined) {
-    return (
-      <LoginRegisterModal />
-    );
-  }
-
   useEffect(() => {
     if (id === undefined) {
       navigate('/');
     }
   }, []);
 
+  if (user === undefined) {
+    return (
+      <LoginRegisterModal />
+    );
+  }
   return (
     <SocketProvider user={user} slug={id as string}>
       <Room />

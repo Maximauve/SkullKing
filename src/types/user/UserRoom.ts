@@ -4,4 +4,5 @@ export interface UserRoom {
   socketId: string | null
   points: number
   isHost: boolean
+  hasToPlay: boolean
 }
