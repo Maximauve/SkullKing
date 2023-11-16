@@ -56,9 +56,9 @@ const LoginRegisterModal: React.FC = () => {
       <div className='flip-modal'>
         <div className={`flipper ${isFlipped ? '' : 'flipped'}`}>
           <div className='modal login-modal'>
-            <p>Avant de jouer, merci de vous connecter :</p>
-            <input name="email" placeholder="email" className="form-control" onChange={(event) => { setEmail(event.target.value); }} value={email}/>
-            <input name="password" placeholder="password" className="form-control" onChange={(event) => { setPassword(event.target.value); }} value={password} />
+            <p className='login-text'>Avant de jouer, merci de vous connecter :</p>
+            <input name="email" placeholder="Email" className="form-control" onChange={(event) => { setEmail(event.target.value); }} value={email}/>
+            <input type='password' name="password" placeholder="Mot de passe" className="form-control" onChange={(event) => { setPassword(event.target.value); }} value={password} />
             <button type="button" onClick={handleLoginClick}>Se Connecter</button>
             { error !== '' &&
               <p className='error'>{error}</p>
@@ -66,11 +66,11 @@ const LoginRegisterModal: React.FC = () => {
             <button id="flip" onClick={handleFlipClick}>Pas encore de compte ?</button>
           </div>
           <div className='modal register-modal'>
-            <p>Créer son pirate :</p>
-            <input name="username" placeholder="username" className="form-control" onChange={(event) => { setUsername(event.target.value); }} value={username}/>
-            <input name="email" placeholder="email" className="form-control" onChange={(event) => { setEmail(event.target.value); }} value={email}/>
-            <input name="password" placeholder="password" className="form-control" onChange={(event) => { setPassword(event.target.value); }} value={password}/>
-            <input name="confirm-password" placeholder="confirm-password" className="form-control" onChange={(event) => { setConfirmPassword(event.target.value); }} value={confirmPassword}/>
+            <p className='register-text'>Créer son pirate :</p>
+            <input name="username" placeholder="Nom d'utilisateur" className="form-control" onChange={(event) => { setUsername(event.target.value); }} value={username}/>
+            <input name="email" placeholder="Email" className="form-control" onChange={(event) => { setEmail(event.target.value); }} value={email}/>
+            <input type='password' name="password" placeholder="Mot de passe" className="form-control" onChange={(event) => { setPassword(event.target.value); }} value={password}/>
+            <input type='password' name="confirm-password" placeholder="Confirmer le mot de passe" className="form-control" onChange={(event) => { setConfirmPassword(event.target.value); }} value={confirmPassword}/>
             {/* eslint-disable-next-line react/no-unescaped-entities */}
             <button type="button" onClick={handleRegisterClick}>S'enregistrer</button>
             { error !== '' &&
