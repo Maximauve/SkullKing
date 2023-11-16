@@ -21,7 +21,7 @@ const UserCenter = (): React.JSX.Element => {
 
   const OpenRules = () => {
     setIsUserCenterOpen(!isUserCenterOpen);
-    setIsRulesOpen(!isRulesOpen);
+    setIsRulesOpen(true);
   };
 
   return (
@@ -39,7 +39,7 @@ const UserCenter = (): React.JSX.Element => {
       }
       { isRulesOpen &&
         <div className='rules'>
-          <Rules />
+          <Rules onClick={() => { setIsRulesOpen(false); }}/>
         </div>
       }
     </>
