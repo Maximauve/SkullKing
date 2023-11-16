@@ -17,7 +17,7 @@ export const MessageInput = ({ send }: { send: (value: Message) => void }): Reac
       <input
         className='chat-input'
         onChange={(e) => { setValue(e.target.value); }}
-        placeholder="Your message..."
+        placeholder="Ton message..."
         value={value}
       />
       <button className='chat-button' onClick={() => { send(message); }}>Envoyer</button>
