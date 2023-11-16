@@ -20,7 +20,7 @@ const UserCenter = (): React.JSX.Element => {
   return (
     <>
       <div className="user-center">
-        <img className="user-profil-picture" onClick={handleClick} src='/image/profil-picture.jpg' alt="Profil Pic" />
+        <img className="user-profile-picture" onClick={handleClick} src='/images/profile-picture.jpg' alt="Profil Pic" />
       </div>
       <div className={`user-center-deploy ${isModalOpen ? '' : 'hidden'}`}>
         <button onClick={Logout}>
