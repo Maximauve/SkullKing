@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { CardContext } from '../contexts/CardProvider';
 import { CardActionType } from '../contexts/cardReducer';
-import { type Card } from '../types/Card';
+import { type Card } from '../types/cards/Card';
 import api from '../config/api';
 
 const useCards = (): object => {

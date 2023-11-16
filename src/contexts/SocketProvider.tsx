@@ -9,11 +9,11 @@ export const SocketContext = React.createContext<[SocketState, Dispatch<Action<S
   () => null
 ]);
 
-const initializeState = (user: User): SocketState => {
-  if (user !== undefined) {
-    console.log('[SocketProvider] User is defined : ', user);
+const initializeState = (prop: props): SocketState => {
+  if (prop.user !== undefined && prop.slug !== undefined) {
+    console.log('[SocketProvider] User is defined : ', prop.user);
     const state: SocketState = {
-      socket: io(process.env.REACT_APP_WS_URL as string, { query: { token: user.access_token } }),
+      socket: io(process.env.REACT_APP_WS_URL as string, { query: { token: prop.user.access_token, slug: prop.slug } }),
       loading: false
     };
     console.log('[SocketProvider] initializeState : ', state);
@@ -24,9 +24,10 @@ const initializeState = (user: User): SocketState => {
 
 interface props {
   user: User
+  slug: string
 }
-const SocketProvider: React.FC<PropsWithChildren<props>> = ({ user, children }) => {
-  const [state, dispatch] = useReducer(SocketReducer, user, initializeState as any);
+const SocketProvider: React.FC<PropsWithChildren<props>> = ({ children, slug, user }) => {
+  const [state, dispatch] = useReducer(SocketReducer, { user, slug }, initializeState as any);
   // const { socket } = state;
   // const { id } = useParams<{ id: string }>();
   // const navigate = useNavigate();

@@ -1,5 +1,5 @@
-import { type Card } from 'types/Card';
-import { type CardType } from 'types/CardType';
+import { type Card } from 'types/cards/Card';
+import { type CardType } from 'types/cards/CardType';
 
 // Types of cards
 const EscapeType: CardType = {
