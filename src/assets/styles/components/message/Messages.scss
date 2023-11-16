@@ -1,0 +1,31 @@
+.chat-button {
+    width: auto;
+    height: auto;
+    margin: 5px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: white;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+
+    &:hover {
+      background-color:  #8A5506;
+    }
+  }
+  .message-text{
+    margin: 1px;
+    padding-left: 5px;
+    width: auto;
+    background-Color: #E29A16; 
+    color: black;
+    border-radius: 20px;
+    border-width: 2px;
+  }
+  .chat-input{
+    border-radius: 20px;
+    border-width: 2px;
+    padding-left: 5px;
+  }

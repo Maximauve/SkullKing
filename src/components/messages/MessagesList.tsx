@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { type Message, type MessageReceived } from 'types/inputs/Message';
-import { useNavigate } from 'react-router-dom';
 import { MessageInput } from 'components/messages/MessageInput';
 import { Messages } from 'components/messages/Messages';
 import { type UserRoom } from 'types/user/UserRoom';
 import useSocket from 'hooks/useSocket';
 
 const MessagesList = (): React.JSX.Element => {
-  const navigate = useNavigate();
   const socket = useSocket();
   const [messages, setMessages] = useState<MessageReceived[]>([]);
+  const [isChatOpen, setIsChatOpen] = useState<boolean>(false);
 
   const sendMessage = (value: Message): void => {
     console.log('alo ?');
@@ -36,16 +35,17 @@ const MessagesList = (): React.JSX.Element => {
     };
   }, [messageListener]);
 
-  const leaveRoom = () => {
-    socket?.disconnect();
-    navigate('/', { replace: true });
+  const chatOpen = () => {
+    setIsChatOpen(!isChatOpen);
   };
 
   return (
     <div>
-      <button onClick={leaveRoom}>Quitter la salle</button>
-      <MessageInput send={sendMessage} />
-      <Messages messages={messages} />
+      <button className="toggle-chat-btn" onClick={chatOpen}>Message</button>
+      <div className="chat-box" style={{ display: isChatOpen ? 'block' : 'none' }}>
+        <Messages messages={messages} />
+        <MessageInput send={sendMessage} />
+      </div>
     </div>
   );
 };
