@@ -1,4 +1,4 @@
-.ChatButton {
+.Chat-button {
     width: auto;
     height: auto;
     justify-content: center;
@@ -14,13 +14,10 @@
       background-color:  #8A5506;
     }
   }
-  .messageText{
+  .message-text{
     display: flex;
     flex:1;
     background-Color: white; 
     color: black;
     max-width: auto;
-  }
-  .LeaveRoom{
-    position: absolute;
   }

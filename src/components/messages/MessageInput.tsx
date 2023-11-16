@@ -19,7 +19,7 @@ export const MessageInput = ({ send }: { send: (value: Message) => void }): Reac
         placeholder="Your message..."
         value={value}
       />
-      <button className='ChatButton' onClick={() => { send(message); }}>Envoyer</button>
+      <button className='Chat-button' onClick={() => { send(message); }}>Envoyer</button>
     </>
   );
 };
