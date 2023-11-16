@@ -59,7 +59,7 @@ const LoginRegisterModal: React.FC = () => {
             <p className='login-text'>Avant de jouer, merci de vous connecter :</p>
             <input name="email" placeholder="Email" className="form-control" onChange={(event) => { setEmail(event.target.value); }} value={email}/>
             <input type='password' name="password" placeholder="Mot de passe" className="form-control" onChange={(event) => { setPassword(event.target.value); }} value={password} />
-            <button type="button" onClick={handleLoginClick}>Se Connecter</button>
+            <button className={ email === '' || password === '' ? 'disabled' : ''} type="button" onClick={handleLoginClick}>Se Connecter</button>
             { error !== '' &&
               <p className='error'>{error}</p>
             }
@@ -72,7 +72,7 @@ const LoginRegisterModal: React.FC = () => {
             <input type='password' name="password" placeholder="Mot de passe" className="form-control" onChange={(event) => { setPassword(event.target.value); }} value={password}/>
             <input type='password' name="confirm-password" placeholder="Confirmer le mot de passe" className="form-control" onChange={(event) => { setConfirmPassword(event.target.value); }} value={confirmPassword}/>
             {/* eslint-disable-next-line react/no-unescaped-entities */}
-            <button type="button" onClick={handleRegisterClick}>S'enregistrer</button>
+            <button className={ username === '' || email === '' || password === '' || confirmPassword === '' ? 'disabled' : ''} type="button" onClick={handleRegisterClick}>S'enregistrer</button>
             { error !== '' &&
               <p className='error'>{error}</p>
             }
