@@ -15,6 +15,7 @@
     transition: all .2s ease-in-out;
     &:hover {
       transform: scale(1.1);
+      cursor: pointer;
     }
   }
 }
@@ -30,7 +31,37 @@
   text-align: center;
   padding : 10px;
   z-index: 5;
-  &.hidden {
-    display: none;
+
+  button{
+    background-color: rgb(0, 128, 0);
+    border: 2px solid rgb(0, 101, 0);
+    border-radius: 25px;
+    width: 80%;
+    height: 40px;
+    padding: 0 20px;
+    margin: 10px;
+    font-family: Darumadrop One;
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+    box-shadow: 0px 6px 0px rgb(1, 101, 1);
+    cursor: pointer;
+
+    &:active {
+      box-shadow: 0px 0px 0px rgb(1, 101, 1);
+      transform: translateY(6px);
+      transition: all 0.2s;
+    }
+
+    &:last-child {
+      color: rgba(255, 255, 255, 1);
+      background-color: rgb(214, 52, 34);
+      border: 2px solid rgb(150, 17, 17);
+      box-shadow: 0px 6px 0px rgb(150, 17, 17);
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      margin: 20px 0;
+    }
   }
 }
