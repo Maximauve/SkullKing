@@ -1,0 +1,26 @@
+.ChatButton {
+    width: auto;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #626666;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+
+    &:hover {
+      background-color:  #8A5506;
+    }
+  }
+  .messageText{
+    display: flex;
+    flex:1;
+    background-Color: white; 
+    color: black;
+    max-width: auto;
+  }
+  .LeaveRoom{
+    position: absolute;
+  }

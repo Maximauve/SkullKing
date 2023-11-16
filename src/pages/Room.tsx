@@ -19,6 +19,7 @@ const Room: React.FC = () => {
   const [messages, setMessages] = useState<MessageReceived[]>([]);
   const socket = io(process.env.REACT_APP_API_BASE_URL as string, { query: { token: user.access_token } });
   const [isConnected, setIsConnected] = useState<boolean>(socket?.connected || false);
+  const [isChatOpen, setIsChatOpen] = useState<boolean>(false);
 
   const sendMessage = (value: Message): void => {
     console.log('alo ?');
@@ -51,16 +52,22 @@ const Room: React.FC = () => {
     };
   }, [setIsConnected, messageListener]);
 
-  const leaveRoom = () => {
-    socket?.disconnect();
-    navigate('/', { replace: true });
+  // const leaveRoom = () => {
+  //   socket?.disconnect();
+  //   navigate('/', { replace: true });
+  // };
+  const chatOpen = () => {
+    setIsChatOpen(!isChatOpen);
   };
 
   return (
     <div>
-      {isConnected ? <button onClick={leaveRoom}>Quitter la salle</button> : <p>Connecting...</p>}
-      <MessageInput send={sendMessage} />
-      <Messages messages={messages} />
+      <button className="toggle-chat-btn" onClick={chatOpen}>Activer le chat</button>
+      <div className="chat-box" style={{ display: isChatOpen ? 'block' : 'none' }}>
+        {isConnected ? <p>Que le meilleur gagne !</p> : <p>Connecting...</p>}
+        <MessageInput send={sendMessage} />
+        <Messages messages={messages} />
+      </div>
     </div>
   );
 };

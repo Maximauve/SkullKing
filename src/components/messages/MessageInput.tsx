@@ -16,10 +16,10 @@ export const MessageInput = ({ send }: { send: (value: Message) => void }): Reac
     <>
       <input
         onChange={(e) => { setValue(e.target.value); }}
-        placeholder="Type yout message..."
+        placeholder="Your message..."
         value={value}
       />
-      <button onClick={() => { send(message); }}>Send</button>
+      <button className='ChatButton' onClick={() => { send(message); }}>Envoyer</button>
     </>
   );
 };
