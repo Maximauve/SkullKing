@@ -5,7 +5,6 @@ import { type RoomOptions } from 'types/RoomOptions';
 import redis from 'config/redis';
 import { UserContext } from 'contexts/UserProvider';
 import ReturnComponent from 'components/home/ReturnComponent';
-import { Link } from 'react-router-dom';
 
 const CreateRoom: React.FC = () => {
   const navigate = useNavigate();
@@ -35,7 +34,7 @@ const CreateRoom: React.FC = () => {
   };
   return (
     <div>
-      <Link to="/">< ReturnComponent /></Link>
+      < ReturnComponent />
       <LoginRegisterModal />
       <div className='start-game'>
         <p>Pour créer une partie, par ici :</p>
