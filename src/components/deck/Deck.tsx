@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { type Card } from 'types/cards/Card';
 import { CardItem } from 'components/deck/CardItem';
 import useSocket from 'hooks/useSocket';
@@ -10,6 +10,16 @@ export const Deck: React.FC<Props> = ({ cards }) => {
   const [activeIndex, setActiveIndex] = useState<number>(-1);
 
   const socket = useSocket();
+
+  useEffect(() => {
+    socket?.on('cards', () => {
+      setActiveIndex(-1);
+    });
+
+    return () => {
+      socket?.off('cards');
+    };
+  }, []);
 
   const updateActiveCard = (index: number) => {
     if (index === activeIndex) {

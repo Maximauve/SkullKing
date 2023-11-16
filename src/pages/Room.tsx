@@ -6,11 +6,11 @@ import { UserContext } from 'contexts/UserProvider';
 import LoginRegisterModal from 'components/user/LoginRegisterModal';
 import useSocket from 'hooks/useSocket';
 import { type UserRoom } from 'types/user/UserRoom';
-import { Deck } from '../components/deck/Deck';
-import { type Card } from '../types/cards/Card';
-import { CardsPlayed } from '../components/deck/CardsPlayed';
-import { type ActionPlayed } from '../types/cards/ActionPlayed';
-import Bet from '../components/room/Bet';
+import { Deck } from 'components/deck/Deck';
+import { type Card } from 'types/cards/Card';
+import { CardsPlayed } from 'components/deck/CardsPlayed';
+import { type ActionPlayed } from 'types/cards/ActionPlayed';
+import Bet from 'components/room/Bet';
 
 const Room = () => {
   const { id } = useParams<{ id: string }>();
@@ -64,9 +64,16 @@ const Room = () => {
       setGameIsStarted(value);
     });
 
-    socket?.on('cards', (newCards: Card[]) => {
+    socket?.on('cards', (newCards: Card[], isNewRound: boolean | undefined) => {
       console.log('[Room] cards updated ! : ', newCards);
-      setCards(newCards);
+      console.log('[Room] currentRound : ', currentRound);
+      if (isNewRound) {
+        setTimeout(() => {
+          setCards(newCards);
+        }, 5000);
+      } else {
+        setCards(newCards);
+      }
     });
 
     socket?.on('cardPlayed', (action: ActionPlayed) => {
@@ -82,14 +89,22 @@ const Room = () => {
       setIsBetTime(false);
     });
 
-    socket?.on('newPli', ([winner]) => {
+    socket?.on('newPli', (winner: UserRoom, isNewRound: boolean | undefined) => {
       console.log('[Room] newPli - winner : ', winner);
-      setActionsPlayed([]);
+      if (isNewRound) {
+        setTimeout(() => {
+          setActionsPlayed([]);
+        }, 5000);
+      } else {
+        setActionsPlayed([]);
+      }
     });
 
     socket?.on('endRound', (newRound: number) => {
-      setCurrentRound(newRound);
-      setIsBetTime(true);
+      setTimeout(() => {
+        setCurrentRound(newRound);
+        setIsBetTime(true);
+      }, 5000);
     });
 
     socket?.on('disconnect', () => {

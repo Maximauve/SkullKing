@@ -13,7 +13,7 @@ const UsersInRoom: React.FC<Props> = ({ members, number }) => {
       </div>
       <ul>
         {members.length > 0 && members.map((member) => (
-          <li key={member.userId}>{member.username} - {member.points}</li>
+          <li className={member.hasToPlay ? 'active' : ''} key={member.userId}>{member.username} - {member.points}</li>
         ))}
       </ul>
     </div>
