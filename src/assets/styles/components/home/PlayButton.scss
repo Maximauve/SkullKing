@@ -1,14 +1,13 @@
 @import 'src/assets/styles/_base/_colors';
 @import url('https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&display=swap');
 
-.play-button {
+.gold-button {
   display: grid;
   border: none;
-  margin: 0;
+  margin: 20px 0;
   .gradient-border {
     justify-self: center;
     position: relative;
-    width: 153px;
     height: 53px;
     border-radius: 5px;
     background: $goldBorderGradient;
@@ -16,11 +15,10 @@
     .gradient-border-inner {
       background: $goldGradient;
       margin: auto;
-      width: 150px;
       height: 50px;
       border-radius: 5px;
       
-      .play-button-text {
+      .gold-button-text {
         position: relative;
         top: 50%;
         left: 50%;
@@ -35,6 +33,7 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         color: #E2A916;
+        padding: 0 20px;
 
       }
     }
