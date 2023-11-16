@@ -7,7 +7,9 @@ import LoginRegisterModal from 'components/user/LoginRegisterModal';
 import useSocket from 'hooks/useSocket';
 import { type UserRoom } from 'types/user/UserRoom';
 import { Deck } from '../components/deck/Deck';
-import { type Card } from '../types/Card';
+import { type Card } from '../types/cards/Card';
+import { CardsPlayed } from '../components/deck/CardsPlayed';
+import { type ActionPlayed } from '../types/cards/ActionPlayed';
 
 const Room = () => {
   const { id } = useParams<{ id: string }>();
@@ -18,6 +20,7 @@ const Room = () => {
   const [gameIsStarted, setGameIsStarted] = useState<boolean>(false);
   const [myUser, setMyUser] = useState<UserRoom | undefined>(undefined);
   const [cards, setCards] = useState<Card[]>([]);
+  const [actionsPlayed, setActionsPlayed] = useState<ActionPlayed[]>([]);
 
   const [isLogged] = useState<boolean>(user !== undefined);
 
@@ -46,9 +49,9 @@ const Room = () => {
 
     socket?.on('members', (members: UserRoom[]) => {
       setMembers(members);
-      setMyUser(members.find((member) => member.socketId === socket.id));
+      setMyUser(members.find((member) => member.socketId === socket?.id));
       console.log('[Room] members : ', members);
-      console.log('[Room] my Socket id : ', socket.id);
+      console.log('[Room] my Socket id : ', socket?.id);
       console.log('[Room] myUser : ', myUser);
     });
 
@@ -61,6 +64,11 @@ const Room = () => {
       setCards(cards);
     });
 
+    socket?.on('cardPlayed', (actionPlayed: ActionPlayed) => {
+      console.log('[Deck] cardPlayed : ', actionPlayed);
+      setActionsPlayed([...actionsPlayed, actionPlayed]);
+    });
+
     socket?.on('disconnect', () => {
       socket?.emit('leaveRoom', id);
       socket?.disconnect();
@@ -71,6 +79,7 @@ const Room = () => {
       socket?.off('members');
       socket?.off('gameStarted');
       socket?.off('cards');
+      socket?.off('cardPlayed');
       socket?.off('disconnect');
     };
   }, []);
@@ -132,6 +141,10 @@ const Room = () => {
     // GAME
     return (
       <>
+        <UsersInRoom members={members}/>
+
+        <CardsPlayed actionsPlayed={actionsPlayed} />
+
         <Deck cards={cards} />
       </>
     );
