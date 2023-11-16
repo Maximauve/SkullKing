@@ -14,10 +14,10 @@ export const Deck: React.FC<Props> = ({ cards }) => {
   const updateActiveCard = (index: number) => {
     if (index === activeIndex) {
       const card = cards[index];
-      console.log('[Deck] emit card : ', card);
+      console.log('[Deck] EMIT ON \'play\' : ', card);
       socket?.emit('play', card, (response: any): void => {
         if (response.hasOwnProperty('error')) {
-          console.log('[Deck] error from play : ', response.error);
+          console.log('[Deck] ERROR from play : ', response.error);
         }
       });
     } else {
