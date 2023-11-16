@@ -89,6 +89,16 @@
 
         border: 5px solid #e23516;
       }
+
+      &.winner {
+        &::before {
+          content: "👑";
+          font-size: 1.8em;
+          margin-right: 5px;
+          position: absolute;
+          top: 0;
+        }
+      }
     }
   }
 }

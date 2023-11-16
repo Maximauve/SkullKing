@@ -24,6 +24,7 @@ const Room = () => {
   const [cards, setCards] = useState<Card[]>([]);
   const [actionsPlayed, setActionsPlayed] = useState<ActionPlayed[]>([]);
   const [currentRound, setCurrentRound] = useState<number>(1);
+  const [winner, setWinner] = useState<UserRoom | undefined>(undefined);
 
   const [isLogged] = useState<boolean>(user !== undefined);
 
@@ -89,15 +90,13 @@ const Room = () => {
       setIsBetTime(false);
     });
 
-    socket?.on('newPli', (winner: UserRoom, isNewRound: boolean | undefined) => {
-      console.log('[Room] newPli - winner : ', winner);
-      if (isNewRound) {
-        setTimeout(() => {
-          setActionsPlayed([]);
-        }, 5000);
-      } else {
+    socket?.on('newPli', (win: UserRoom) => {
+      console.log('[Room] newPli - winner : ', win);
+      setWinner(win);
+      setTimeout(() => {
         setActionsPlayed([]);
-      }
+        setWinner(undefined);
+      }, 5000);
     });
 
     socket?.on('endRound', (newRound: number) => {
@@ -154,10 +153,14 @@ const Room = () => {
     // GAME
     return (
       <>
-        <UsersInRoom members={members} number={currentRound} />
+        <UsersInRoom members={members} number={currentRound} winner={winner} />
 
         {isBetTime && (
           <Bet currentRound={currentRound} />
+        )}
+
+        {winner !== undefined && (
+          <p>{winner.username} a gagné le pli !</p>
         )}
 
         <CardsPlayed actionsPlayed={actionsPlayed} />
