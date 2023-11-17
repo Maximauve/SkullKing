@@ -145,7 +145,9 @@ const Room = () => {
         <UsersInRoom members={members} number={members.length} gameIsStarted={gameIsStarted}/>
 
         <div className='display-user-center'>
-          <UserCenter />
+          <UserCenter>
+            <button onClick={() => { navigate('/'); }}>Quitter la partie</button>
+          </UserCenter>
         </div>
 
         <div className='start-modal'>
