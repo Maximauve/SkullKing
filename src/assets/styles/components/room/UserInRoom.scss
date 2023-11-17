@@ -73,6 +73,7 @@
       list-style: none;
       justify-content: center;
       display: flex;
+      flex-direction: column;
       align-items: center;
       color: rgba(141, 70, 5, 0.67);
       text-align: center;
@@ -86,7 +87,6 @@
       overflow: hidden;
 
       &.active {
-
         border: 5px solid #e23516;
       }
 
