@@ -5,6 +5,7 @@
 }
 
 .user-center {
+  user-select: none;
   z-index: 5;
   .user-profile-picture {
     width: 70px;
@@ -21,6 +22,7 @@
 }
 
 .user-center-deploy {
+  user-select: none;
   right:0;
   display: block;
   position: absolute;

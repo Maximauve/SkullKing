@@ -147,17 +147,20 @@ const Room = () => {
           <UserCenter />
         </div>
 
-        {myUser?.isHost && (
-          <div className='start-modal'>
-            {members.length < 3 && (
-              <div>
-                <p>En attente de joueurs ...</p>
+        <div className='start-modal'>
+          {members.length < 3
+            ? (<div>
+              <p>En attente de joueurs ...</p>
+              {myUser?.isHost && (
                 <p>Il faut être au moins 3 joueurs pour lancer la partie !</p>
-              </div>
-            )}
+              )}
+            </div>)
+            : (<p>En attente du lancement de la partie ...</p>)
+          }
+          {myUser?.isHost && (
             <button className={members.length < 3 ? 'disabled' : ''} onClick={startGame}>Lancer la partie</button>
-          </div>
-        )}
+          )}
+        </div>
 
         <MessagesList/>
       </>
@@ -168,9 +171,10 @@ const Room = () => {
       <>
 
         <UsersInRoom members={members} number={currentRound} winner={winner} gameIsStarted={gameIsStarted}/>
-
         <div className='display-user-center'>
-          <UserCenter />
+          <UserCenter>
+            <button onClick={() => { navigate('/'); }}>Quitter la partie</button>
+          </UserCenter>
         </div>
 
         {isBetTime && (
@@ -180,7 +184,9 @@ const Room = () => {
         )}
 
         {winner !== undefined && (
-          <p className='player-to-play'>{winner.username} a gagné le pli !</p>
+          <div className='player-to-play'>
+            <p>{winner.username} a gagné le pli !</p>
+          </div>
         )}
 
         <CardsPlayed actionsPlayed={actionsPlayed} />
