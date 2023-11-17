@@ -11,6 +11,7 @@ import { type Card } from 'types/cards/Card';
 import { CardsPlayed } from 'components/deck/CardsPlayed';
 import { type ActionPlayed } from 'types/cards/ActionPlayed';
 import Bet from 'components/room/Bet';
+import UserCenter from 'components/user/UserCenter';
 
 const Room = () => {
   const { id } = useParams<{ id: string }>();
@@ -142,6 +143,10 @@ const Room = () => {
       <>
         <UsersInRoom members={members} number={members.length} gameIsStarted={gameIsStarted}/>
 
+        <div className='display-user-center'>
+          <UserCenter />
+        </div>
+
         {myUser?.isHost && (
           <div className='start-modal'>
             {members.length < 3 && (
@@ -164,6 +169,10 @@ const Room = () => {
 
         <UsersInRoom members={members} number={currentRound} winner={winner} gameIsStarted={gameIsStarted}/>
 
+        <div className='display-user-center'>
+          <UserCenter />
+        </div>
+
         {isBetTime && (
           <div className='player-bet'>
             <Bet currentRound={currentRound} />
@@ -171,7 +180,7 @@ const Room = () => {
         )}
 
         {winner !== undefined && (
-          <p>{winner.username} a gagné le pli !</p>
+          <p className='player-to-play'>{winner.username} a gagné le pli !</p>
         )}
 
         <CardsPlayed actionsPlayed={actionsPlayed} />
@@ -185,6 +194,8 @@ const Room = () => {
         <div className='player-deck'>
           <Deck cards={cards} />
         </div>
+
+        <MessagesList/>
       </>
     );
   }
