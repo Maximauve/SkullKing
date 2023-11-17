@@ -41,11 +41,11 @@ const MessagesList = (): React.JSX.Element => {
 
   return (
     <div>
-      <button className="toggle-chat-btn" onClick={chatOpen}>Message</button>
+      <button className={`toggle-chat-btn ${isChatOpen ? 'open' : ''}`} onClick={chatOpen}>Tchat</button>
       {isChatOpen && (
         <div className='chat-box'>
-          <Messages messages={messages} />
           <MessageInput send={sendMessage} />
+          <Messages messages={messages} />
         </div>
       )}
     </div>
