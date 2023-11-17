@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Darumadrop+One&display=swap');
+
+.bet-background {
+	background-color: rgba(255, 255, 255, 0.1);
+	border: 1px solid #E2A916;
+	padding: 20px 50px;
+	border-radius: 10px;
+	box-shadow: 0 0 4px #ECDB8B,0 0 1px #ffffff;
+	color: #ffffff;
+	.bet-modal {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		p {
+			font-size: 20px;
+			font-family: Darumadrop One;
+		}
+
+		select {
+			background-color: white;
+			border: none;
+			border-radius: 25px;
+			height: 30px;
+			padding: 0 20px;
+			margin: 0 15px;
+			cursor: pointer;
+
+			&.done {
+				pointer-events: none;
+			}
+		}
+
+		button {
+			background-color: rgb(0, 128, 0);
+			border: 2px solid rgb(0, 101, 0);
+			border-radius: 25px;
+			width: 80%;
+			height: 40px;
+			padding: 0 20px;
+			margin: 10px;
+			font-family: Darumadrop One;
+			font-size: 20px;
+			color: rgb(255, 255, 255);
+			box-shadow: 0px 6px 0px rgb(1, 101, 1);
+			cursor: pointer;
+
+			&:active {
+				box-shadow: 0px 0px 0px rgb(1, 101, 1);
+				transform: translateY(6px);
+				transition: all 0.2s;
+			}
+
+			&.done {
+				background-color: rgb(255, 209, 27);
+				border: 2px solid rgb(222, 152, 0);
+				border-radius: 25px;
+				width: 80%;
+				height: 40px;
+				padding: 0 20px;
+				margin: 10px;
+				font-family: Darumadrop One;
+				font-size: 20px;
+				color: rgb(255, 255, 255);
+				box-shadow: 0px 0px 0px rgb(222, 152, 0);
+				transform: translateY(6px);
+				transition: all 0.2s;
+				pointer-events: none;
+			}
+		}
+	}
+}
