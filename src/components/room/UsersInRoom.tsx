@@ -6,7 +6,6 @@ interface Props {
   number: number
   gameIsStarted: boolean
   winner?: UserRoom
-  gameIsStarted: boolean
 }
 
 const UsersInRoom: React.FC<Props> = ({ members, number, gameIsStarted, winner }) => {
