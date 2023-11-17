@@ -5,8 +5,10 @@ import useSocket from 'hooks/useSocket';
 
 interface Props {
   cards: Card[]
+  isMyTurn: boolean | undefined
+  canPlay: boolean
 }
-export const Deck: React.FC<Props> = ({ cards }) => {
+export const Deck: React.FC<Props> = ({ cards, isMyTurn, canPlay }) => {
   const [activeIndex, setActiveIndex] = useState<number>(-1);
 
   const socket = useSocket();
@@ -25,10 +27,12 @@ export const Deck: React.FC<Props> = ({ cards }) => {
     if (index === activeIndex) {
       const card = cards[index];
       console.log('[Deck] EMIT ON \'play\' : ', card);
-      socket?.emit('play', card, (response: any): void => {
+      socket?.emitWithAck('play', card).then((response: any): void => {
         if (response.hasOwnProperty('error')) {
           console.log('[Deck] ERROR from play : ', response.error);
         }
+      }).catch((err) => {
+        console.error(err);
       });
     } else {
       setActiveIndex(index);
@@ -38,7 +42,7 @@ export const Deck: React.FC<Props> = ({ cards }) => {
   return (
     <div className='deck'>
       { cards.length > 0 && cards.map((card, index) => (
-        <CardItem key={index} card={card} isPlayable={true} isActive={index === activeIndex} onClick={() => { updateActiveCard(index); }} />
+        <CardItem key={index} card={card} isPlayable={(isMyTurn === true && canPlay)} isActive={index === activeIndex} onClick={() => { updateActiveCard(index); }} />
       ))}
     </div>
   );

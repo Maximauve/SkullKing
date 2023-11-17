@@ -5,8 +5,8 @@
   align-items: baseline;
   justify-content:space-between;
   margin: 10px 0;
-  
-  
+
+
   .chat-button {
     width: 40px;
     height: 30px;
@@ -22,14 +22,22 @@
     font-size: 20px;
     color: rgb(255, 255, 255);
     box-shadow: 0px 6px 0px rgb(1, 101, 1);
-    
+
     &:active {
       box-shadow: 0px 0px 0px rgb(1, 101, 1);
       transform: translateY(6px);
       transition: all 0.2s;
     }
+
+    &:disabled {
+      background-color: #e6e6e6;
+      box-shadow: none;
+      border: none;
+      color: darkgray;
+      pointer-events: none;
+    }
   }
-  
+
   .chat-input{
     border-radius: 20px;
     padding: 0 20px;
@@ -46,7 +54,7 @@
   min-height: 30px;
   height: auto;
   width: auto;
-  background-Color: #ffffff; 
+  background-Color: #ffffff;
   color: black;
   border-radius: 10px;
   display: flex;
@@ -60,4 +68,3 @@
     margin: 5px;
   }
 }
-  

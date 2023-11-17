@@ -185,14 +185,14 @@ const Room = () => {
 
         <CardsPlayed actionsPlayed={actionsPlayed} />
 
-        {myUser?.hasToPlay && !isBetTime && (
+        {myUser?.hasToPlay && !isBetTime && winner === undefined && (
           <div className='player-to-play'>
             <p>C'est à toi de jouer !</p>
           </div>
         )}
 
         <div className='player-deck'>
-          <Deck cards={cards} />
+          <Deck cards={cards} isMyTurn={myUser?.hasToPlay} canPlay={winner === undefined} />
         </div>
 
         <MessagesList/>
