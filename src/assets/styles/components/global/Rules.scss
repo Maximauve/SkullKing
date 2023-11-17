@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Darumadrop+One&display=swap');
+
 .rules-modal {
   position: absolute;
   top: 0;
@@ -6,6 +8,7 @@
   height: 80vh;
   padding: 50px;
   pointer-events: none;
+
   .modal-background {
     position: relative;
     background-color: rgba(255, 255, 255, 0.1);
@@ -16,11 +19,46 @@
     border-radius: 25px;
     z-index: 1;
     pointer-events: initial;
+
     .modal {
       color: white;
       height: 82%;
       width: auto;
       margin: 50px;
+      font-family: Darumadrop One;
+      overflow: auto;
+
+      &::-webkit-scrollbar {
+        width: 10px;
+      }
+      &::-webkit-scrollbar-track {
+        background-color: transparent;
+      }
+      &::-webkit-scrollbar-thumb {
+        background-color: orange;
+        border-radius: 20px;
+        border: 3px solid orange;
+      }
+
+      h1 {
+        font-size: 48px;
+        font-weight: 400;
+        margin-bottom: 20px;
+      }
+
+      p {
+        font-size: 24px;
+        font-weight: 400;
+        margin-bottom: 20px;
+      }
+
+      ul {
+        li {
+          font-size: 20px;
+          font-weight: 400;
+          margin-bottom: 20px;
+        }
+      }
     }
   }
 }
