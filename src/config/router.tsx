@@ -4,6 +4,7 @@ import HomePage from 'pages/HomePage';
 import RoomLayout from 'components/layout/RoomLayout';
 import CreateRoom from 'pages/CreateRoom';
 import SocketLayout from 'components/layout/SocketLayout';
+import RoomNotFound from 'pages/RoomNotFound';
 
 export const Router = createBrowserRouter([
   {
@@ -14,7 +15,7 @@ export const Router = createBrowserRouter([
   {
     path: '/room',
     element: <RoomLayout />,
-    errorElement: <div>404</div>,
+    errorElement: <RoomNotFound />,
     children: [
       {
         path: '',
@@ -29,6 +30,10 @@ export const Router = createBrowserRouter([
         element: <CreateRoom />
       }
     ]
+  },
+  {
+    path: '/error',
+    element: <RoomNotFound />
   }
 ]);
 

@@ -48,6 +48,7 @@ const Room = () => {
       socket?.emitWithAck('joinRoom', id).then((response: any) => {
         if (response.hasOwnProperty('error')) {
           console.log('error from joinRoom : ', response.error);
+          navigate('/room/create');
         } else {
           setGameIsStarted(response.gameIsStarted);
         }
