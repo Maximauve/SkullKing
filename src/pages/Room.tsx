@@ -161,6 +161,7 @@ const Room = () => {
     // GAME
     return (
       <>
+
         <UsersInRoom members={members} number={currentRound} winner={winner} gameIsStarted={gameIsStarted}/>
 
         {isBetTime && (
