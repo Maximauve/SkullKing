@@ -1,5 +1,5 @@
 import { type Action } from 'types/Action';
-import { type Card } from 'types/Card';
+import { type Card } from 'types/cards/Card';
 
 export enum CardActionType {
   INIT_CARDS = 'INIT_CARDS',
