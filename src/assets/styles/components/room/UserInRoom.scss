@@ -73,6 +73,7 @@
       list-style: none;
       justify-content: center;
       display: flex;
+      flex-direction: column;
       align-items: center;
       color: rgba(141, 70, 5, 0.67);
       text-align: center;
@@ -84,6 +85,7 @@
       word-break: break-all;
       text-overflow: ellipsis;
       overflow: hidden;
+      
     }
   }
 }

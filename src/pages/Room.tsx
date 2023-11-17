@@ -126,10 +126,18 @@ const Room = () => {
   if (!gameIsStarted) {
     return (
       <>
-        <UsersInRoom members={members} number={members.length}/>
+        <UsersInRoom members={members} number={members.length} gameIsStarted={gameIsStarted}/>
 
         {myUser?.isHost && (
-          <button onClick={startGame}>Lancer la partie</button>
+          <div className='start-modal'>
+            {members.length < 3 && (
+              <div>
+                <p>En attente de joueurs ...</p>
+                <p>Il faut être au moins 3 joueurs pour lancer la partie !</p>
+              </div>
+            )}
+            <button className={members.length < 3 ? 'disabled' : ''} onClick={startGame}>Lancer la partie</button>
+          </div>
         )}
 
         <MessagesList/>
@@ -139,18 +147,25 @@ const Room = () => {
     // GAME
     return (
       <>
-        <UsersInRoom members={members} number={currentRound} />
+        <UsersInRoom members={members} number={currentRound} gameIsStarted={gameIsStarted}/>
 
         {isBetTime && (
-          <Bet currentRound={currentRound} />
+          <div className='player-bet'>
+            <Bet currentRound={currentRound} />
+          </div>
         )}
 
         <CardsPlayed actionsPlayed={actionsPlayed} />
 
-        <Deck cards={cards} />
-        {myUser?.hasToPlay && (
-          <p>c'est à toi de jouer !</p>
+        {myUser?.hasToPlay && !isBetTime && (
+          <div className='player-to-play'>
+            <p>C'est à toi de jouer !</p>
+          </div>
         )}
+
+        <div className='player-deck'>
+          <Deck cards={cards} />
+        </div>
       </>
     );
   }
