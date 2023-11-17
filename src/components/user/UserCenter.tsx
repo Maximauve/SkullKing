@@ -33,7 +33,7 @@ const UserCenter = (): React.JSX.Element => {
         <div className='user-center-deploy'>
           <button onClick={OpenRules}> Régles </button>
           <button onClick={Logout}>
-            Logout
+            Déconnexion
           </button>
         </div>
       }
