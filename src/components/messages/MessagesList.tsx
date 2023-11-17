@@ -10,20 +10,9 @@ const MessagesList = (): React.JSX.Element => {
   const [messages, setMessages] = useState<MessageReceived[]>([]);
   const [isChatOpen, setIsChatOpen] = useState<boolean>(false);
 
-  const sendMessage = (value: Message): void => {
-    console.log('alo ?');
-    socket?.emit('chat', value as any, (response: any): any => {
-      console.log('response : ', response);
-    });
-  };
-
   const messageListener = (message: Message, user: UserRoom): void => {
-    console.log('message reçu ! ', message, user);
     const msg: MessageReceived = { message, user };
-    console.log(`append message ${msg.message.text} to messages: `, messages);
-    console.log('new value must be : ', [...messages, msg]);
-    setMessages([...messages, msg]);
-    console.log('messages after append: ', messages);
+    setMessages((previousMessages) => [...previousMessages, msg]);
   };
 
   useEffect(() => {
@@ -44,7 +33,7 @@ const MessagesList = (): React.JSX.Element => {
       <button className={`toggle-chat-btn ${isChatOpen ? 'open' : ''}`} onClick={chatOpen}>Tchat</button>
       {isChatOpen && (
         <div className='chat-box'>
-          <MessageInput send={sendMessage} />
+          <MessageInput />
           <Messages messages={messages} />
         </div>
       )}
