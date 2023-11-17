@@ -4,10 +4,12 @@ import { type UserRoom } from 'types/user/UserRoom';
 interface Props {
   members: UserRoom[]
   number: number
+  gameIsStarted: boolean
   winner?: UserRoom
   gameIsStarted: boolean
 }
-const UsersInRoom: React.FC<Props> = ({ members, number, winner, gameIsStarted }) => {
+
+const UsersInRoom: React.FC<Props> = ({ members, number, gameIsStarted, winner }) => {
   return (
     <div className='user-list'>
       <div className='user-counter'>
