@@ -180,7 +180,9 @@ const Room = () => {
         )}
 
         {winner !== undefined && (
-          <p className='player-to-play'>{winner.username} a gagné le pli !</p>
+          <div className='player-to-play'>
+            <p>{winner.username} a gagné le pli !</p>
+          </div>
         )}
 
         <CardsPlayed actionsPlayed={actionsPlayed} />
