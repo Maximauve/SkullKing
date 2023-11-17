@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Darumadrop+One&display=swap');
+
 .start-game {
     color :#FBF5EF;
     position: absolute;
@@ -6,4 +8,14 @@
     transform: translate(-50%, -50%);
     text-align: center;
     z-index: 0;
+
+    p {
+        font-family: Darumadrop One;
+        font-size: 38px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        text-align: center;
+        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
 }
