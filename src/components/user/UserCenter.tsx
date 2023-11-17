@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { type PropsWithChildren, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useUser from 'hooks/useUser';
 import { Rules } from 'components/global/Rules';
 
-const UserCenter = (): React.JSX.Element => {
+const UserCenter: React.FC<PropsWithChildren> = ({ children }): React.JSX.Element => {
   const [isUserCenterOpen, setIsUserCenterOpen] = useState(false);
   const [isRulesOpen, setIsRulesOpen] = useState(false);
   const navigate = useNavigate();
@@ -32,6 +32,7 @@ const UserCenter = (): React.JSX.Element => {
       { isUserCenterOpen &&
         <div className='user-center-deploy'>
           <button onClick={OpenRules}> Régles </button>
+          {children}
           <button onClick={Logout}>
             Déconnexion
           </button>
