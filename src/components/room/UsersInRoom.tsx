@@ -15,7 +15,7 @@ const UsersInRoom: React.FC<Props> = ({ members, number, gameIsStarted, winner }
       </div>
       <ul>
         {gameIsStarted && members.length > 0 && members.map((member) => (
-          <li key={member.userId}>
+          <li className={'' + (member.hasToPlay ? 'active' : '') + (member.userId === winner?.userId ? ' winner' : '')} key={member.userId}>
             <div className='user-name'>
               {member.username}
             </div>
