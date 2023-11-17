@@ -13,13 +13,14 @@ export const MessageInput = ({ send }: { send: (value: Message) => void }): Reac
   };
 
   return (
-    <>
+    <div className='chat'>
       <input
+        className='chat-input'
         onChange={(e) => { setValue(e.target.value); }}
-        placeholder="Type your message..."
+        placeholder="Ton message..."
         value={value}
       />
-      <button onClick={() => { send(message); }}>Send</button>
-    </>
+      <button className='chat-button' onClick={() => { send(message); }}>→</button>
+    </div>
   );
 };

@@ -5,7 +5,10 @@ export const Messages = ({ messages }: { messages: MessageReceived[] }): React.J
   return (
     <div>
       {messages.map((message, index) => (
-        <div style={{ backgroundColor: 'white', color: 'black' }} key={index}>{message.user.username} - {message.message.timeSent} : {message.message.text}</div>
+        <div className='message-text' key={index}>
+          <div className='user-name'> {message.user.username} : </div>
+          {message.message.text}
+        </div>
       ))}
     </div>
   );
